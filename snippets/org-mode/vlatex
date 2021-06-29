@@ -1,0 +1,80 @@
+# -*- mode: snippet -*-
+# name: vlatex
+# key: <vlatex
+# --
+
+#+LATEX_CLASS: varticle
+#+LATEX_CLASS_OPTIONS: [11pt,twoside,openany,strict,extrafontsizes,article]
+#+LATEX_HEADER: \usepackage{placeins}
+#+LATEX_HEADER: \PassOptionsToPackage{hyphens}{url}\usepackage{hyperref}
+#+LATEX_HEADER: \hypersetup{hidelinks}
+#+LATEX_HEADER: \usepackage{titling}
+#+LATEX_HEADER: \usepackage{comment,multirow,booktabs,threeparttable,lmodern,graphicx,longtable,float,wrapfig,underscore,ltxtable,tabulary}
+#+LATEX_HEADER: \usepackage[add-decimal-zero = true,add-integer-zero = true,round-integer-to-decimal,round-mode = places,round-precision=1,group-separator={,}]{siunitx}
+#+LATEX_HEADER: \newcolumntype{C}{>{\centering\arraybackslash}X}
+#+LATEX_HEADER: \newcommand{\mcx}[2]{\multicolumn{#1}{>{\hsize=\dimexpr #1\hsize +\numexpr2*#1-2\relax\tabcolsep \relax}C}{#2}}
+#+LATEX_HEADER: \newcommand{\mcone}[1]{\multicolumn{1}{C}{#1}}
+#+LATEX_HEADER: \newcommand{\mc}[1]{\multicolumn{1}{c}{#1}}
+#+MACRO: MCONE @@latex:\mcone{\$1}@@
+#+macro: getcell src_emacs-lisp[:results value raw]{(org-table-get-remote-range "\$1" "\$2")}
+#+macro: roundnum src_emacs-lisp[:results value raw]{(round (string-to-number (org-table-get-remote-range "\$1" "\$2")))}
+#+MACRO: NEWLINE @@latex:\linebreak@@ @@html:<br>@@
+#+MACRO: PARSPC @@latex:\\[0.5\baselineskip]@@ @@html:<br>@@
+#+MACRO: MC @@latex:\mc{\$1}@@
+#+LATEX_HEADER: \setlength\tabcolsep{1pt}
+#+LATEX_HEADER: \usepackage{fontspec,xltxtra,polyglossia}
+#+LATEX_HEADER: \setmainfont[Ligatures=TeX,Scale=1.0454]{Minion Pro}
+#+LATEX_HEADER: \setsecheadstyle{\raggedright\large\bfseries}
+#+LATEX_HEADER: \setsubsecheadstyle{\raggedright\bfseries}
+#+LATEX_HEADER: \setsubsubsecheadstyle{\raggedright\itshape}
+#+LATEX_HEADER: \renewcommand\thesection{\arabic{section}}
+#+LATEX_HEADER: \setcounter\secnumdepth{2}
+#+LATEX_HEADER: \setsecnumdepth{subsection}
+#+LATEX_HEADER: \setrmarg{3.55em plus 1fil}
+#+LATEX_HEADER: \setlength{\abovecaptionskip}{1pt}
+#+LATEX_HEADER: \setlength{\belowcaptionskip}{1pt}
+#+LATEX_HEADER: \usepackage{caption}
+#+LATEX_HEADER: \captionsetup[table]{slc=off}
+#+LATEX_HEADER: \linespread{1.2}
+#+LATEX_HEADER: \clubpenalty=10000
+#+LATEX_HEADER: \widowpenalty=10000
+#+LATEX_HEADER: \hbadness=10000
+#+LATEX_HEADER: \pretolerance=2000
+#+LATEX_HEADER: \tolerance=2000
+#+LATEX_HEADER: \emergencystretch=10pt
+#+LATEX_HEADER: \hyphenpenalty=8000
+#+LATEX_HEADER: \newlength{\drop}
+#+LATEX_HEADER: \drop = 0.1\textheight
+#+LATEX_HEADER: \newenvironment{hangingpar}[1]
+#+LATEX_HEADER:   {\begin{list}
+#+LATEX_HEADER:           {}
+#+LATEX_HEADER:           {\setlength{\itemindent}{-#1}%%'
+#+LATEX_HEADER:            \setlength{\leftmargin}{#1}%%'
+#+LATEX_HEADER:            \setlength{\itemsep}{0pt}%%'
+#+LATEX_HEADER:            \setlength{\parsep}{\parskip}%%'
+#+LATEX_HEADER:            \setlength{\topsep}{\parskip}%%'
+#+LATEX_HEADER:            }
+#+LATEX_HEADER:     \setlength{\parindent}{-#1}%%
+#+LATEX_HEADER:     \item[]
+#+LATEX_HEADER:   }
+#+LATEX_HEADER:   {\end{list}}
+#+LATEX_HEADER: \renewcommand{\TPTminimum}{\linewidth}
+#+LATEX_HEADER: \raggedbottom
+#+LATEX_HEADER: \feetatbottom
+#+LATEX_HEADER: \usepackage[many]{tcolorbox}
+#+LATEX_HEADER: \tcbuselibrary{breakable}
+#+LATEX_HEADER: \NewTColorBox[auto counter,list inside=box]{NewBox}{v}{%
+#+LATEX_HEADER:  float*=htb,width=\textwidth,enhanced,parbox=false,
+#+LATEX_HEADER:  title=Box~\thetcbcounter.\ #1, arc=0mm,
+#+LATEX_HEADER:  colframe=black,colback=white,colbacktitle=grey,lefttitle=0mm,righttitle=0mm,coltitle=black,fontupper=\small
+#+LATEX_HEADER:  }
+#+LATEX_HEADER: \usepackage{enumitem}
+#+LATEX_HEADER: \usepackage{enumerate}
+#+LATEX_HEADER: \renewcommand{\descriptionlabel}[1]{\hspace{\labelsep}\textit{#1}}
+#+LATEX_HEADER: \usepackage{dblfloatfix}
+#+LATEX_HEADER: \usepackage{chngcntr}
+#+LATEX_HEADER: \usepackage{pdflscape}
+#+LATEX_HEADER: \usepackage[hang,flushmargin]{footmisc}
+#+LATEX_HEADER: \setlength{\footmarkwidth}{1.5em}
+#+LATEX_HEADER: \setlength{\footmarksep}{1em}
+#+LATEX_HEADER: \footmarkstyle{#1\hfill}

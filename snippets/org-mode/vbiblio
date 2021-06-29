@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: vbiblio
+# key: <vbiblio
+# --
+#+INCLUDE: bibliobase/vikas-bibstyle.org
+#+LATEX_HEADER: \addbibresource{bibliobase/bibliobase.bib}

@@ -1,0 +1,15 @@
+alias l ls -1a
+alias gap git add -p
+alias g git
+alias ga git add
+alias gr git remote
+alias gb git branch
+alias gco git checkout
+alias glg git log
+alias gd git diff
+alias gc git commit
+alias gp git push
+alias gl git pull
+alias gss git status -s
+alias mgs magit-status
+alias ll ls -halF
