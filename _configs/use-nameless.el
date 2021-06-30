@@ -4,6 +4,8 @@
 (require 'use-package)
 
 (use-package nameless
+  :ensure t
+
   :init
   (add-hook 'emacs-lisp-mode-hook 'nameless-mode)
 
