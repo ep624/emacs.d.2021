@@ -4,6 +4,7 @@
 (require 'use-package)
 
 (use-package coffee-mode
+  :ensure t
   :defines coffee-mode-map
   :config
   (progn

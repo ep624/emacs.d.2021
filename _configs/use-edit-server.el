@@ -4,6 +4,7 @@
 (require 'use-package)
 
 (use-package edit-server
+  :ensure t
   :init
   (progn (edit-server-start)))
 

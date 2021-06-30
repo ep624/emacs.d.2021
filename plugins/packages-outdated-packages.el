@@ -37,6 +37,8 @@
 
 ;;; Code:
 (use-package epl :ensure t)
+(use-package tblui :ensure t)
+
 ;;(require 'epl)
 (require 'bind-key)
 
