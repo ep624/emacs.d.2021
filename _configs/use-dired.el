@@ -7,7 +7,7 @@
   :init
   (progn
 ;;    (use-package dired-details+)
-    (use-package dirtree)
+    (use-package dirtree :ensure t)
 
     (bind-key "C-x C-d" 'ido-dired)
 
