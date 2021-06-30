@@ -8,6 +8,7 @@
 (require 'use-package)
 
 (use-package ido
+  :ensure t
   :init
   (progn
     (defun ido-tab-do-nothing () (interactive))

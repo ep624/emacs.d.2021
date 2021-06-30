@@ -4,6 +4,7 @@
 (require 'use-package)
 
 (use-package avy
+  :ensure t
   :init
   (progn (bind-key "M-s M-s" 'avy-isearch isearch-mode-map))
   :config
