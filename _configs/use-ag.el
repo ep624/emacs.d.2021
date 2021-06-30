@@ -3,6 +3,9 @@
 ;;; Code:
 (require 'use-package)
 
+(use-package hydra
+  :ensure t)
+
 (use-package ag
   :ensure t
   :init

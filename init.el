@@ -30,13 +30,13 @@
                ag
                diff-region
 ;;               highlight-indentation
-               kurecolor
+;;               kurecolor
                teletype-text
 ;;               iedit
 ;;               js2-refactor
                kill-buffer-without-confirm
 ;;               mac-frame-adjust
-               multiple-cursors
+;;               multiple-cursors
                resize-window
                scroll-bell-fix
                squeeze-view
@@ -54,7 +54,7 @@
                kbd-gfm
                packages-outdated-packages
                date-thing
-               ibm-box-drawing-hydra
+  ;;             ibm-box-drawing-hydra
                ))
   (require lib))
 
