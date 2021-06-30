@@ -2,8 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 (require 'use-package)
-
+(cua-selection-mode 1)
 (use-package multiple-cursors
+  :ensure t
   :bind
   (("C->" . mc/mark-next-like-this)
    ("C-<" . mc/mark-all-like-this)

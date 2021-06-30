@@ -33,35 +33,36 @@
           (message "Optional use-file: %s, was loaded" name))
       (message "Optional use-file: %s, not found" name))))
 
-(defun set-window-system-font ()
-  "Set the window system font."
-  ;; Default Font for different window systems
-  (when (window-system)
-    ;; Mac OS X
-    (when (or (eq system-type 'gnu/linux) (eq system-type 'darwin))
-      ;;
-      ;;(set-face-font 'default "Monaco")
-      ;;(set-face-font 'default "Menlo")
-      (set-face-font 'default "-ADBE-Source Code Pro-normal-normal-normal-*-19-*-*-*-m-0-iso10646-1")
-      ;;(set-face-font 'default "Source Code Pro Light")
-      ;;(set-face-font 'default "Inconsolata")
-      ;;(set-face-font 'default "Bitstream Vera Sans Mono")
 
-      ;; ================================================
-      ;; a copy of SauceCodePro is kept in emacs.d/fonts
-      (set-face-attribute 'default nil
-                          :font "-ADBE-Source Code Pro-normal-normal-normal-*-19-*-*-*-m-0-iso10646-1"
-                          )
-      ;;
-      )
-    ;; Sample Text for font viewing
-    '("ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-      "abcdefghijklmnopqrstuvwxyz"
-      "1234567890!@#$%^&*()-=_+[]\{}|;':<>?,./")
+(set-face-font 'default "-ADBE-Source Code Pro-normal-normal-normal-*-22-*-*-*-m-0-iso10646-1")
 
-    ;; Windows whatever...
-    (when (eq system-type 'windows-nt)
-      (set-face-font 'default "Consolas"))))
+;; (defun set-window-system-font ()
+;;   "Set the window system font."
+;;   ;; Default Font for different window systems
+;;   (when (window-system)
+;;     ;; Mac OS X
+;;     (when (or (eq system-type 'gnu/linux) (eq system-type 'darwin))
+;;       ;;
+
+;;       ;;(set-face-font 'default "Monaco")
+;;       ;;(set-face-font 'default "Menlo")
+;;       (set-face-font 'default "-ADBE-Source Code Pro-normal-normal-normal-*-39-*-*-*-m-0-iso10646-1")
+;;       ;;(set-face-font 'default "Source Code Pro Light")
+;;       ;;(set-face-font 'default "Inconsolata")
+;;       ;;(set-face-font 'default "Bitstream Vera Sans Mono")
+;;       (set-face-attribute 'default nil
+;;                           :font "-ADBE-Source Code Pro-normal-normal-normal-*-39-*-*-*-m-0-iso10646-1"
+;;                           )
+;;       ;;
+;;       )
+;;     ;; Sample Text for font viewing
+;;     '("ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+;;       "abcdefghijklmnopqrstuvwxyz"
+;;       "1234567890!@#$%^&*()-=_+[]\{}|;':<>?,./")
+
+;;     ;; Windows whatever...
+;;     (when (eq system-type 'windows-nt)
+;;       (set-face-font 'default "Consolas"))))
 
 (provide 'init-helpers)
 

@@ -4,23 +4,26 @@
 ;; (package-initialize)
 
 ;; increase garbage collection limit
+(add-to-list 'load-path "~/.emacs.d/org-mode/lisp")
+(require 'org-loaddefs)
 (setq gc-cons-threshold 800000)
 
 (let ((default-directory user-emacs-directory))
   (add-to-list 'load-path (expand-file-name "init-helpers")))
 (setq confirm-kill-emacs 'y-or-n-p)
 
+(require 'lentic)
 (load-library "init-helpers")
 (init-set-custom)
 (manage-toolbar-and-menubar)
 (manage-history)
-(set-window-system-font)
+;;(set-window-system-font)
 (setq debug-on-error nil)
 (setq frame-title-format '("%b %I %+%@%t%Z %m %n %e"))
 
 (let ((default-directory user-emacs-directory))
   (normal-top-level-add-subdirs-to-load-path))
-
+(require 'use-org)
 (require 'elpa-init)
 
 ;; Explicit Requires ...
