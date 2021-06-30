@@ -1,5 +1,7 @@
 ;;; clean-mode-line
 ;;; http://blog.jr0cket.co.uk/2013/01/tweeking-emacs-modeline-for-clojure.html
+(use-package yasnippet :ensure t)
+
 (defvar mode-line-cleaner-alist
   `((auto-complete-mode . " α")
     (yas-minor-mode . " γ")

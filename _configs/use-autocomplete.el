@@ -3,6 +3,7 @@
 ;;; Code:
 (require 'use-package)
 
+(use-package yasnippet :ensure t)
 (use-package auto-complete-config)
 (use-package ac-dabbrev)
 (use-package dropdown-list)
