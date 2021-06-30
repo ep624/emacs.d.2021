@@ -43,7 +43,7 @@
 (require 'ox-extra)
 ;; (use-package ox-extra :after org)
 (require 'org-tempo)
-(require 'org-sticky-header)
+(use-package org-sticky-header :ensure t :after org)
 
 (ox-extras-activate '(ignore-headlines))
 ;; optional but very useful libraries in org-ref
