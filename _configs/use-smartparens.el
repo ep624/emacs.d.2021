@@ -3,7 +3,7 @@
 ;;; Code:
 
 (require 'cua-base)
-(require 'smartparens)
+(use-package smartparens :ensure t)
 
 (smartparens-global-mode t)
 
