@@ -4,6 +4,7 @@
 (require 'use-package)
 
 (use-package smerge-mode
+  :after hydra
   :functions smerge-next smerge-prev smerge-keep-all smerge-keep-mine smerge-keep-other
   :config
   (progn

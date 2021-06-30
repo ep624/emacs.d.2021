@@ -7,6 +7,7 @@
   :ensure t)
 
 (use-package ag
+  :after hydra
   :ensure t
   :init
   (progn
