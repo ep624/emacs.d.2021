@@ -4,7 +4,7 @@
 (require 'use-package)
 
 (use-package yasnippet :ensure t)
-(use-package ac-dabbrev :ensure t)
+;; (use-package ac-dabbrev :ensure t)
 (use-package dropdown-list :ensure t)
 
 (use-package auto-complete
