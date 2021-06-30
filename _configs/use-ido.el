@@ -12,10 +12,10 @@
   :init
   (progn
     (defun ido-tab-do-nothing () (interactive))
-
     (use-package ido-vertical-mode :ensure t)
     (ido-mode t)
     (ido-vertical-mode t)
+    (use-package ido-completing-read+ :ensure t)
     (ido-everywhere 1)
     (ido-ubiquitous-mode t)
     (flx-ido-mode t)
