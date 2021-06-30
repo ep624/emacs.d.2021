@@ -4,7 +4,11 @@
 
 ;;; Code:
 
-(require 'ivy)
-(setq ivy-wrap t) ;; turn on ivy selection wrapping
+(use-package ivy
+  :ensure t
+  :config
+  (setq ivy-wrap t) ;; turn on ivy selection wrapping
+  )
+;;(require 'ivy)
 
 ;;; use-ivy ends here
