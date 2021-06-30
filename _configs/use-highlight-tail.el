@@ -1,4 +1,5 @@
-(require 'highlight-tail)
+(use-package highlight-tail :ensure t)
+;;(require 'highlight-tail)
 
 ;; Rainbow trail
 (defun highlight-tail-rainbow-trail ()
