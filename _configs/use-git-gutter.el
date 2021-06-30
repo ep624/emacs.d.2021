@@ -2,9 +2,11 @@
 ;;; Commentary:
 ;;; Code:
 
-(if (window-system)
-    (progn (require 'git-gutter-fringe+))
-  (progn (require 'git-gutter+)))
+(use-package git-gutter :ensure t)
+
+;; (if (window-system)
+;;     (progn (require 'git-gutter-fringe+))
+;;   (progn (require 'git-gutter+)))
 
 (defhydra hydra-git-gutter (:body-pre (git-gutter+-mode 1)
                             :hint nil)

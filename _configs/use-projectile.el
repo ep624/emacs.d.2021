@@ -1,3 +1,4 @@
+(use-package projectile :ensure t)
 (projectile-global-mode t)
 
 (defun projectile-open-last-known-project ()

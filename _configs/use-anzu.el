@@ -3,7 +3,7 @@
 ;;; Code:
 (require 'use-package)
 
-(use-package anzu-mode
+(use-package anzu
   :ensure t
   :init (global-anzu-mode t)
   :bind (("M-%" . anzu-query-replace)
