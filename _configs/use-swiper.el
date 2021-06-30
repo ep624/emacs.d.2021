@@ -3,7 +3,8 @@
 ;;  use Swiper instead of isearch regexp
 
 ;;; Code:
-(require 'swiper)
+(use-package swiper :ensure t)
+;;(require 'swiper)
 
 (bind-key "C-S-s" 'swiper)
 
