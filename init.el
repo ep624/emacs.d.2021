@@ -23,7 +23,6 @@
 
 (let ((default-directory user-emacs-directory))
   (normal-top-level-add-subdirs-to-load-path))
-(require 'use-org)
 (require 'elpa-init)
 
 ;; Explicit Requires ...
