@@ -36,7 +36,8 @@
 ;;
 
 ;;; Code:
-(require 'epl)
+(use-package epl :ensure t)
+;;(require 'epl)
 (require 'bind-key)
 
 (defun packages-outdated-packages-make-plist (pack)
