@@ -18,6 +18,7 @@
     (use-package ido-completing-read+ :ensure t)
     (ido-everywhere 1)
     (ido-ubiquitous-mode t)
+    (use-package flx-ido :ensure t)
     (flx-ido-mode t)
     (setq ido-vertical-define-keys 'C-n-C-p-up-down-left-right)
     (setq ido-create-new-buffer 'always)
