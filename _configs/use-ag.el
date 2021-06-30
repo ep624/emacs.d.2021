@@ -4,6 +4,7 @@
 (require 'use-package)
 
 (use-package ag
+  :ensure t
   :init
   (progn
     (add-to-list 'ag-arguments "--hidden")

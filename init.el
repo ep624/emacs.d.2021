@@ -12,7 +12,7 @@
   (add-to-list 'load-path (expand-file-name "init-helpers")))
 (setq confirm-kill-emacs 'y-or-n-p)
 
-(require 'lentic)
+;(require 'lentic)
 (load-library "init-helpers")
 (init-set-custom)
 (manage-toolbar-and-menubar)
