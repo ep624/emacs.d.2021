@@ -25,10 +25,10 @@
     (setq ido-enable-flex-matching t)
     (setq ido-auto-merge-work-directories-length -1))
 
-  :bind
-  (("M-x" . smex)
-   ("M-s-x" . execute-extended-command)
-   ("M-X" . smex-major-mode-commands)))
-
+  ;; :bind
+  ;; (("M-x" . smex)
+  ;;  ("M-s-x" . execute-extended-command)
+  ;;  ("M-X" . smex-major-mode-commands)))
+ )
 (provide 'use-ido)
 ;;; use-ido ends here

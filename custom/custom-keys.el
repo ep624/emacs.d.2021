@@ -28,7 +28,7 @@
  ("C-c SPC"      . ace-jump-mode)
  ("C-c ;"        . iedit-mode)
  ("RET"          . newline-and-indent)
- ("M-`"          . magit-status)
+;; ("M-`"          . magit-status)
  ("C-x C-a"      . append-to-file)
  ("C-M-,"        . shrink-window-horizontally) ;; Ctrl-Alt-<
  ("C-M-."        . enlarge-window-horizontally) ;; Ctrl-Alt->
