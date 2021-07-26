@@ -3,8 +3,32 @@
 ;;; Code:
 (add-to-list 'load-path "~/.emacs.d/org-contrib/lisp")
 (require 'ox-latex)
+(require 'ox-beamer)
+(require 'ox-odt)
+(require 'ox-html)
+(require 'ox-publish)
+(require 'ox-extra)
+;; (use-package ox-extra :after org)
+(require 'org-tempo)
+(require 'doi-utils)
+(require 'org-id)
+(require 'org-table)
+(require 'ox-md)
+(require 'ox-org)
+
+(use-package org-sticky-header :ensure t :after org)
+
+(ox-extras-activate '(ignore-headlines))
+
 (setq org-latex-caption-above '(image table special-block))
 (setq org-latex-create-formula-image-program 'imagemagick)
+
+(setq org-latex-pdf-process
+      '("xelatex -interaction nonstopmode -output-directory %o %f"
+        "biber %b"
+        "xelatex -interaction nonstopmode -output-directory %o %f"
+        "xelatex -interaction nonstopmode -output-directory %o %f"))
+
 ;; Org latex classes
 
 (add-to-list 'org-latex-classes
@@ -36,39 +60,244 @@
                ("\\section{%s}" . "\\section*{%s}")
                ("\\subsection{%s}" . "\\subsection*{%s}")
                ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
-(require 'ox-beamer)
-(require 'ox-odt)
-(require 'ox-html)
-(require 'ox-publish)
-(require 'ox-extra)
-;; (use-package ox-extra :after org)
-(require 'org-tempo)
-(use-package org-sticky-header :ensure t :after org)
 
-(ox-extras-activate '(ignore-headlines))
-;; optional but very useful libraries in org-ref
-(global-set-key [f10] 'org-ref-open-bibtex-notes)
-(global-set-key [f11] 'org-ref-open-bibtex-pdf)
-(global-set-key [f12] 'org-ref-open-in-browser)
+(add-to-list 'org-latex-classes
+             '("beamer"
+               "\\documentclass[presentation]{beamer}"
+               ("\\section{%s}" . "\\section*{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
 
-;; (use-package org-ql
-;;   :quelpa (org-ql :fetcher github :repo "alphapapa/org-ql"))
+(add-to-list 'org-beamer-environments-extra
+             '("onlyenv" "O" "\\begin{onlyenv}%a" "\\end{onlyenv}"))
+(add-to-list 'org-beamer-environments-extra
+             '("textpos" "X" "\\begin{textblock}{10}(3,3) \\visible %a {" "} \\end{textblock}"))
+(add-to-list 'org-beamer-environments-extra
+             '("textpos1" "w" "\\begin{textblock}{%h}(3,3) \\visible %a {" "} \\end{textblock}"))
 
-;; (use-package org-sidebar
-;;  :quelpa (org-sidebar :fetcher github :repo "alphapapa/org-sidebar"))
 
-(use-package org-ref
-  :quelpa (org-ref :fetcher github :repo "jkitchin/org-ref")
-  :bind (("<f10>" . org-ref-bibtex-notes)
-         ("<f11>" . org-ref-open-bibtex-pdf)
-         ("<f12>" . org-ref-open-in-browser))
-  :config
-  (setq org-ref-default-citation-link "citep")
-  (setq org-ref-insert-cite-key "C-c )")
-  )
-(require 'doi-utils)
-(require 'org-id)
-(require 'org-table)
-(require 'ox-md)
+
+;; some other useful functions
+
+(defun org-export-multicolumn-filter (row backend info)
+  (cond
+   ((org-export-derived-backend-p backend 'latex)
+    (org-export-multicolumn-filter-latex row backend info))
+   ((org-export-derived-backend-p backend 'latex)
+    (org-export-multicolumn-filter-latex0 row backend info))
+   ((org-export-derived-backend-p backend 'html)
+    (org-export-multicolumn-filter-html row backend info))))
+
+
+
+;; original from Eric
+(defun org-export-multicolumn-filter-latex (row backend info)
+  (while (string-match
+          "\\(<\\([0-9]+\\)col\\([lrc]\\)?>[[:blank:]]*\\([^&]+\\)\\)" row)
+    (let ((columns (string-to-number (match-string 2 row)))
+          (start (match-end 0))
+          (contents (replace-regexp-in-string
+                     "\\\\" "\\\\\\\\"
+                     (replace-regexp-in-string "[[:blank:]]*$" ""
+                                               (match-string 4 row))))
+          (algn (or (match-string 3 row) "l")))
+      (setq row (replace-match
+                 (format "\\\\multicolumn{%d}{%s}{%s}" columns algn contents)
+                 nil nil row 1))
+      (while (and (> columns 1) (string-match "&" row start))
+        (setq row (replace-match "" nil nil row))
+        (decf columns))
+      ))
+  row)
+
+;; midrules
+(defun org-export-cmidrule-filter-latex (row backend info)
+  (while (string-match
+          "\\(<\\([0-9]+\\)cid\\([0-9]+\\)?>[[:blank:]]*\\([^&]+\\)\\)" row)
+    (let ((start (string-to-number (match-string 2 row)))
+          (end (or (match-string 3 row) "l")))
+      (setq row (replace-match
+                 (format "\\\\cmidrule(lr){%s-%s}" start end)
+                 nil nil row 1))
+      (while (string-match "& \\| \\\\\\\\" row 0)
+        (setq row (replace-match "" nil nil row))
+        (decf start))
+      )
+    )
+  row)
+
+(defun org-export-midrule-filter-latex (row backend info)
+  (replace-regexp-in-string "\\(<mid>\\([[:blank:]]+\\&\\)+\\)[[:blank:]]\\\\\\\\" "\\\\midrule" row))(defun org-export-multicolumn-filter-html (row backend info)
+  (while (string-match "class=\".*\" *>&lt;\\([0-9]+\\)col\\([lrc]\\)?&gt;" row)
+    (let ((columns (string-to-number (match-string 1 row)))
+          (start (match-end 0))
+          (algn (case (intern (or (match-string 2 row) "l"))
+                  (c "center")
+                  (r "right")
+                  (l "left"))))
+      (setq row (replace-match
+                 (format " class=\"%s\" colspan=\"%s\">" algn columns)
+                 nil nil row))
+      (while (and (> columns 1)
+                  (string-match "<th .*>&#xa0;</th>" row start))
+        (setq row (replace-match "" nil nil row))
+        (decf columns))))
+  row)
+
+
+
+;; modified
+
+(defun org-export-multicolumn-filter-latex0 (row backend info)
+  (while (string-match
+          "\\(<\\([0-9]+\\)clm\\([lrc]\\)?>[[:blank:]]*\\([^&]+\\)\\)" row)
+    (let ((columns (string-to-number (match-string 2 row)))
+          (start (match-end 0))
+          (contents (replace-regexp-in-string
+                     "\\\\" "\\\\\\\\"
+                     (replace-regexp-in-string "[[:blank:]]*$" ""
+                                               (match-string 4 row))))
+          (algn (or (match-string 3 row) "l")))
+      (setq row (replace-match
+                 (format "\\\\mcx{%d}{%s}" columns contents)
+                 nil nil row 1))
+      (while (and (> columns 1) (string-match "&" row start))
+        (setq row (replace-match "" nil nil row))
+        (decf columns))))
+  row)
+
+
+
+(defun org-export-multicolumn-filter-html (row backend info)
+  (while (string-match "class=\".*\" *>&lt;\\([0-9]+\\)col\\([lrc]\\)?&gt;" row)
+    (let ((columns (string-to-number (match-string 1 row)))
+          (start (match-end 0))
+          (algn (case (intern (or (match-string 2 row) "l"))
+                  (c "center")
+                  (r "right")
+                  (l "left"))))
+      (setq row (replace-match
+                 (format " class=\"%s\" colspan=\"%s\">" algn columns)
+                 nil nil row))
+      (while (and (> columns 1)
+                  (string-match "<th .*>&#xa0;</th>" row start))
+        (setq row (replace-match "" nil nil row))
+        (decf columns))))
+  row)
+
+(defun org-export-blanks-filter-latex (row backend info)
+  "Replace nil in table with --- in LaTeX export."
+  (when (org-export-derived-backend-p backend 'latex)
+    (replace-regexp-in-string "nil" "\\\\mcone{---}" row)))
+
+(defun org-export-blanks-filter-html (row backend info)
+  "Replace nil in table with --- in HTML export."
+  (when (org-export-derived-backend-p backend 'html)
+    (replace-regexp-in-string "nil" "---" row)))
+
+
+(add-to-list 'org-export-filter-table-row-functions
+             'org-export-multicolumn-filter)
+
+(add-to-list 'org-export-filter-table-row-functions
+             'org-export-cmidrule-filter-latex)
+
+(add-to-list 'org-export-filter-table-row-functions
+             'org-export-midrule-filter-latex)
+
+(add-to-list 'org-export-filter-table-row-functions
+             'org-export-blanks-filter-latex)
+
+(add-to-list 'org-export-filter-table-row-functions
+             'org-export-blanks-filter-html)
+
+
+(defun org-word-count (beg end
+                           &optional count-latex-macro-args?
+                           count-footnotes?)
+  "Report the number of words in the Org mode buffer or selected region.
+Ignores:
+- comments
+- tables
+- source code blocks (#+BEGIN_SRC ... #+END_SRC, and inline blocks)
+- hyperlinks (but does count words in hyperlink descriptions)
+- tags, priorities, and TODO keywords in headers
+- sections tagged as 'not for export'.
+
+The text of footnote definitions is ignored, unless the optional argument
+COUNT-FOOTNOTES? is non-nil.
+
+If the optional argument COUNT-LATEX-MACRO-ARGS? is non-nil, the word count
+includes LaTeX macro arguments (the material between {curly braces}).
+Otherwise, and by default, every LaTeX macro counts as 1 word regardless
+of its arguments."
+  (interactive "r")
+  (unless mark-active
+    (setf beg (point-min)
+          end (point-max)))
+  (let ((wc 0)
+        (latex-macro-regexp "\\\\[A-Za-z]+\\(\\[[^]]*\\]\\|\\){\\([^}]*\\)}"))
+    (save-excursion
+      (goto-char beg)
+      (while (< (point) end)
+        (cond
+         ;; Ignore comments.
+         ((or (org-in-commented-line) (org-at-table-p))
+          nil)
+         ;; Ignore hyperlinks. But if link has a description, count
+         ;; the words within the description.
+         ((looking-at org-bracket-link-analytic-regexp)
+          (when (match-string-no-properties 5)
+            (let ((desc (match-string-no-properties 5)))
+              (save-match-data
+                (incf wc (length (remove "" (org-split-string
+                                             desc "\\W")))))))
+          (goto-char (match-end 0)))
+         ((looking-at org-any-link-re)
+          (goto-char (match-end 0)))
+         ;; Ignore source code blocks.
+         ((org-in-regexps-block-p "^#\\+BEGIN_SRC\\W" "^#\\+END_SRC\\W")
+          nil)
+         ;; Ignore inline source blocks, counting them as 1 word.
+         ((save-excursion
+            (backward-char)
+            (looking-at org-babel-inline-src-block-regexp))
+          (goto-char (match-end 0))
+          (setf wc (+ 2 wc)))
+         ;; Count latex macros as 1 word, ignoring their arguments.
+         ((save-excursion
+            (backward-char)
+            (looking-at latex-macro-regexp))
+          (goto-char (if count-latex-macro-args?
+                         (match-beginning 2)
+                       (match-end 0)))
+          (setf wc (+ 2 wc)))
+         ;; Ignore footnotes.
+         ((and (not count-footnotes?)
+               (or (org-footnote-at-definition-p)
+                   (org-footnote-at-reference-p)))
+          nil)
+         (t
+          (let ((contexts (org-context)))
+            (cond
+             ;; Ignore tags and TODO keywords, etc.
+             ((or (assoc :todo-keyword contexts)
+                  (assoc :priority contexts)
+                  (assoc :keyword contexts)
+                  (assoc :checkbox contexts))
+              nil)
+             ;; Ignore sections marked with tags that are
+             ;; excluded from export.
+             ((assoc :tags contexts)
+              (if (intersection (org-get-tags-at) org-export-exclude-tags
+                                :test 'equal)
+                  (org-forward-same-level 1)
+                nil))
+             (t
+              (incf wc))))))
+        (re-search-forward "\\w+\\W*")))
+    (message (format "%d words in %s." wc
+                     (if mark-active "region" "buffer")))))
+
 
 (provide 'use-org-contrib)

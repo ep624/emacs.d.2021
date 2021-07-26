@@ -12,6 +12,7 @@
 
   :init
   (progn
+    (define-key cua-global-keymap [C-return] nil)
     (define-key cua--rectangle-keymap (kbd "M-U") 'mc/cua-rectangle-to-multiple-cursors)))
 
 (provide 'use-multiple-cursors)
