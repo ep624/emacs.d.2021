@@ -3,6 +3,7 @@
 ;;; Code:
 
 (require 'cua-base)
+(define-key cua-global-keymap [C-return] nil)
 (use-package smartparens :ensure t)
 
 (smartparens-global-mode t)

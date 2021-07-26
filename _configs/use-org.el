@@ -14,11 +14,11 @@
 ;;   :config
 ;;(unbind-key "C-c ;" org-mode-map)
 
-  ;;set priority range from A to C with default A
+
+;;set priority range from A to C with default A
 (setq org-highest-priority ?A)
 (setq org-lowest-priority ?C)
 (setq org-default-priority ?A)
-
 
 ;;set colours for priorities
 (setq org-priority-faces '((?A . (:foreground "OliveDrab" :weight bold))
@@ -50,6 +50,44 @@
 (setq org-hide-leading-stars t)
 (setq org-alphabetical-lists t)
 (setq org-publish-use-timestamps-flag t)
+(add-hook 'org-mode-hook 'turn-off-auto-fill)
+(add-hook 'org-mode-hook 'turn-on-visual-line-mode)
+
+;; spell-check in org mode buffers
+
+(add-hook 'org-mode-hook 'flyspell-mode)
+(add-hook 'org-mode-hook 'flyspell-buffer)
+
+(setq flyspell-issue-message-flag nil)
+
+(add-hook 'org-mode-hook (lambda () (setq ispell-parser 'tex)))
+(defun flyspell-ignore-tex ()
+  (interactive)
+  (set (make-variable-buffer-local 'ispell-parser) 'tex))
+(add-hook 'org-mode-hook 'flyspell-ignore-tex)
+
+(prefer-coding-system 'utf-8)
+(set-charset-priority 'unicode)
+(setq default-process-coding-system '(utf-8-unix . utf-8-unix))
+
+(org-add-link-type
+ "color" nil
+ (lambda (path desc format)p
+  (cond
+   ((eq format 'html)
+    (format "<span style=\"color:%s;\">%s</span>" path desc))
+   ((eq format 'latex)
+    (format "{\\color{%s}%s}" path desc)))))
+
+(org-add-link-type
+ "hl" nil
+ (lambda (path desc format)
+  (cond
+   ((eq format 'html)
+    (format "<font style=\"background-color:%s;\">%s</font>" path desc))
+   ((eq format 'latex)
+    (format "\\colorbox{%s}{%s}" path desc))))) ;; require \usepackage{color}
+
 (setq org-agenda-include-diary t)
 
 (setq org-refile-targets (quote ((nil :maxlevel . 2)
@@ -72,13 +110,6 @@
         ("CANCELLED" :foreground "forest green" :weight bold)))
 
 (setq org-enforce-todo-dependencies t)
-
-(setq org-latex-pdf-process
-      '("xelatex -interaction nonstopmode -output-directory %o %f"
-        "biber %b"
-        "xelatex -interaction nonstopmode -output-directory %o %f"
-        "xelatex -interaction nonstopmode -output-directory %o %f"))
-
 
 ;; execute external programs.
 (org-babel-do-load-languages
@@ -104,45 +135,6 @@
 ;;   '(define-key org-src-mode-map
 ;;      "\C-x\C-s" #'org-edit-src-exit)))
 
-(require 'reftex)
 
-(use-package cdlatex
-  :ensure t
-  :after reftex)
-
-(use-package bibretrieve
-  :after reftex
-  :ensure t
-  :config
-  (setq bibretrieve-backends '(("citebase" . 10) ("mrl" . 10) ("arxiv" . 5) ("zbm" . 5)))
-  (defun bibretrieve-scholar-create-url (author title)
-    (let ((tempfile (make-temp-file "scholar" nil ".bib")))
-      (call-process-shell-command "~/bin/gscholar/gscholar/gscholar.py --all" nil nil nil
-                                  (if (> (length author) 0) (concat "\"" author "\""))
-                                  (if (> (length title) 0)  (concat "\"" title "\""))
-                                  (concat " > " tempfile))
-      (concat "file://" tempfile)
-      ))
-
-  (defun bibretrieve-scholar ()
-    (interactive)
-    (setq mm-url-use-external t)
-    (setq bibretrieve-backends '(("scholar" . 5)))
-    (bibretrieve)
-    (setq mm-url-use-external nil)
-    )
-
-  (defun bibretrieve-amazon-create-url (author title)
-    (concat "http://lead.to/amazon/en/?key="(mm-url-form-encode-xwfu title) "&si=ble&op=bt&bn=&so=sa&ht=us"))
-  (defun bibretrieve-amazon ()
-    (interactive)
-    (setq mm-url-use-external t)
-    (setq mm-url-program "w3m")
-    (setq mm-url-arguments (list "-dump"))
-    (setq bibretrieve-backends '(("amazon" . 5)))
-    (bibretrieve)
-    (setq mm-url-use-external nil)
-    )
-  )
 
 (provide 'use-org)

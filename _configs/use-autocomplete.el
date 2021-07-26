@@ -47,9 +47,11 @@
 
     (defun ac-ruby-mode-setup ()
       (dolist (source '(ac-source-yasnippet ac-source-robe))
-        (add-to-list 'ac-sources source)))))
+        (add-to-list 'ac-sources source))))
+  :config
+  (require 'auto-complete-config)
+  )
 
-(require 'auto-complete-config)
 ;; (use-package ac-dabbrev :ensure t)
 ;; (use-package dropdown-list :ensure t)
 

@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-(use-package git-gutter :ensure t :after hydra)
+(use-package git-gutter+ :ensure t :after hydra)
 
 ;; (if (window-system)
 ;;     (progn (require 'git-gutter-fringe+))
