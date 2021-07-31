@@ -1,0 +1,29 @@
+# -*- mode: snippet -*-
+# name: 3part
+# key: <3part
+# --
+
+
+#+NAME: $1
+#+CAPTION: $2
+#+ATTR_LATEX: :float t
+#+begin_table*
+#+begin_threeparttable
+#+ATTR_LATEX: :environment tabularx :width ${3:0.9\textwidth}
+#+ATTR_LATEX: :align @\{\}$4@\{\}
+#+ATTR_LATEX: :center :booktabs t
+$0
+[INSERT TABLE HERE]
+#+attr_latex: :options [flushleft]
+#+begin_tablenotes
+#+begin_footnotesize
++ Notes: :: \mbox{}
+     +
+     +
++ Sources: :: \mbox{}
+     1.
+     2.
+#+end_footnotesize
+#+end_tablenotes
+#+end_threeparttable
+#+end_table*

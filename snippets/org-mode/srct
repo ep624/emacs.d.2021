@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: srct
+# key: <srct
+# --
+
+#+NAME: $1
+#+BEGIN_SRC R :results value :exports results :hlines :colnames yes
+  $0
+#+end_src

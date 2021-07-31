@@ -3,6 +3,58 @@
 
 ;;(mybibs '("~/ssercloud/bibliobase/bibliobase.bib"))
 
+
+(use-package ivy-bibtex
+  :init
+  (setq bibtex-completion-bibliography '("~/ssercloud/bibliobase/bibliobase.bib")
+        bibtex-completion-notes-path "~/ssercloud/bibliobase/notes/"
+        bibtex-completion-notes-template-multiple-files "#+TITLE: Notes on: ${author-or-editor} (${year}): ${title}\n\nSee [cite/t:@${=key=}]\n"
+        bibtex-completion-library-path '("~/ssercloud/pdfbibliobase/")
+        bibtex-completion-additional-search-fields '(keywords)
+        bibtex-completion-display-formats
+        '((article       . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${journal:40}")
+          (inbook        . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} Chapter ${chapter:32}")
+          (incollection  . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${booktitle:40}")
+          (inproceedings . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${booktitle:40}")
+          (t             . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*}"))
+        bibtex-completion-pdf-open-function
+        (lambda (fpath)
+          (call-process "open" nil 0 nil fpath))))
+
+(use-package citeproc)
+
+(use-package org-cite
+  :load-path "~/.emacs.d/org-mode/lisp/"
+  :config
+  (require 'oc-csl))
+
+(add-to-list 'load-path "~/.emacs.d/org-ref-cite/")
+
+(use-package org-ref-cite
+  :load-path "~/.emacs.d/org-ref-cite/"
+  :config
+  ;; I like green links
+  (set-face-attribute 'org-cite nil :foreground "DarkGoldenrod")
+  (set-face-attribute 'org-cite-key nil :foreground "yellow2")
+  (setq
+   org-cite-global-bibliography bibtex-completion-bibliography
+   ;; https://github.com/citation-style-language/styles
+   ;; or https://www.zotero.org/styles
+   org-cite-csl-styles-dir "/Users/jkitchin/Dropbox/emacs/scimax/org-ref-cite/csl-styles"
+   org-cite-insert-processor 'org-ref-cite
+   org-cite-follow-processor 'org-ref-cite
+   org-cite-activate-processor 'org-ref-cite
+   org-cite-export-processors '((html csl "elsevier-with-titles.csl")
+                                (latex org-ref-cite)
+                                (t basic)))
+
+  (define-key org-mode-map (kbd "C-c \\") 'org-cite-insert))
+
+(setq  flyspell-duplicate-distance 0
+       flyspell-mark-duplications-flag nil
+       warning-minimum-level :error)
+
+
 (use-package ivy-bibtex
   :ensure t
   :init
