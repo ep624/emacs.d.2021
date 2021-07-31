@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: srcg
+# key: <srcg
+# --
+
+#+NAME: $1
+#+BEGIN_SRC R :results file graphics :exports results :file $2.png :width ${3:2100} :height ${4:1100}  :res 300
+  $0
+#+end_src
