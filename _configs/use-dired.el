@@ -6,12 +6,12 @@
 (use-package dired
   :init
   (progn
-;;    (use-package dired-details+)
+;;    (use-package dired-details+ :ensure t)
     (use-package dirtree :ensure t)
 
     (bind-key "C-x C-d" 'ido-dired)
 
-    (setq dired-details-initially-hide t)
+;;    (setq dired-details-initially-hide nil)
 
     (defun my-dired-find-file (&optional arg)
       "Open each of the marked files, or the file under the point, or when prefix arg, the next N files "
@@ -19,7 +19,7 @@
       (let* ((fn-list (dired-get-marked-files nil arg)))
         (mapc 'find-file fn-list)))
 
-    (add-hook 'dired-after-readin-hook #'(lambda () (dired-details-activate)))
+;;    (add-hook 'dired-after-readin-hook #'(lambda () (dired-details-activate)))
 
     (add-hook 'dired-mode-hook #'(lambda ()
                                    (visual-line-mode 0)
