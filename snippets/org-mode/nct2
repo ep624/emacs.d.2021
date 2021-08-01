@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: named table with two columns
+# key: nct
+# --
+#+name: ${1:name}
+#+caption: ${2:caption}
+| $0 |  |

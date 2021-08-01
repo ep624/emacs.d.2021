@@ -1,7 +1,8 @@
 # -*- mode: snippet -*-
-# name: table with one column
-# key: t
+# name: named table with one column
+# key: nct
 # contributor: John Kitchin <jkitchin@andrew.cmu.edu>
-# condition: (looking-back "^t" 2)
 # --
+#+name: ${1:name}
+#+caption: ${2:caption}
 | $0 |

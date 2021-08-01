@@ -1,7 +1,8 @@
 # -*- mode: snippet -*-
-# name: table with three columns
-# key: ttt
+# name: named table with one column
+# key: nct
 # contributor: John Kitchin <jkitchin@andrew.cmu.edu>
-# condition: (looking-back "^ttt" 4)
 # --
+#+name: ${1:name}
+#+caption: ${2:caption}
 | $0 |  |  |
