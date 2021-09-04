@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: name-caption-block
+# key: blockhead
+# contributor: Vikas Rawal (vikasrawal@gmail.com)
+# --
+#+name: ${1:name}
+#+caption: ${2:caption}

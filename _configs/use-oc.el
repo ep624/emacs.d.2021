@@ -21,12 +21,15 @@
         (lambda (fpath)
           (call-process "open" nil 0 nil fpath))))
 
-(use-package citeproc)
+(use-package citeproc
+  :ensure t)
 
 (use-package org-cite
   :load-path "~/.emacs.d/org-mode/lisp/"
   :config
-  (require 'oc-csl))
+  (require 'oc-csl)
+  (require 'oc-biblatex)
+  )
 
 (add-to-list 'load-path "~/.emacs.d/org-ref-cite/")
 
@@ -80,24 +83,23 @@
 
 (use-package citeproc :ensure t)
 
-(use-package org-cite
-  :load-path "~/.emacs.d/org-mode/lisp"
-  :config
-  (require 'oc-bibtex "~/scimax/org-ref3/oc-bibtex.el")
-  (require 'oc-biblatex)
-  (require 'oc-csl)
-  (require 'doi-utils) ;; this is in org-ref still
-  (setq
-;;   org-cite-global-bibliography bibtex-completion-bibliography
-   org-cite-csl-styles-dir "~/temp/styles"
-   org-cite-insert-processor 'bibtex
-   org-cite-follow-processor 'bibtex
-   org-cite-activate-processor 'bibtex
-   org-cite-export-processors '((html basic)
-                                (latex biblatex)
-                                (t (basic numeric))))
+;; (use-package org-cite
+;;   :load-path "~/.emacs.d/org-mode/lisp"
+;;   :config
+;;   (require 'oc-biblatex)
+;;   (require 'oc-csl)
+;;   (require 'doi-utils) ;; this is in org-ref still
+;;   (setq
+;; ;;   org-cite-global-bibliography bibtex-completion-bibliography
+;;    org-cite-csl-styles-dir "~/temp/styles"
+;;    org-cite-insert-processor 'org-ref-cite-insert
+;;    org-cite-follow-processor 'org-ref-cite-follow
+;;    org-cite-activate-processor 'org-ref-cite-activate
+;;    org-cite-export-processors '((html basic)
+;;                                 (latex biblatex)
+;;                                 (t (basic numeric))))
 
-  (define-key org-mode-map (kbd "C-c \\") 'org-cite-insert))
+;;   (define-key org-mode-map (kbd "C-c \\") 'org-cite-insert))
 
 
 ;; bibretrieve

@@ -2,4 +2,4 @@
 # name: startup options
 # key: st
 # --
-#+startup: ${1:showeverything}
+#+startup: ${1:hideblocks} ${2:shrink}

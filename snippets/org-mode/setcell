@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: setcell
+# key: setcell
+# contributor: Vikas Rawal <vikasrawal@gmail.com>
+# --
+
+\SetCell[r=${1:1},c=${2:2}]{${3:c}}

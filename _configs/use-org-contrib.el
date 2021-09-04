@@ -114,6 +114,23 @@
   row)
 
 ;; midrules
+
+(defun org-export-tabularray-cmidrule-filter-latex (row backend info)
+  (while (string-match
+          "\\(<\\([0-9]+\\)cd\\([0-9]+\\)?>[[:blank:]]*\\([^&]+\\)\\)" row)
+    (let ((start (string-to-number (match-string 2 row)))
+          (end (or (match-string 3 row) "l")))
+      (setq row (replace-match
+                 (format "\\\\cmidrule{%s-%s}" start end)
+                 nil nil row 1))
+      (while (string-match "& \\| \\\\\\\\" row 0)
+        (setq row (replace-match "" nil nil row))
+        (decf start))
+      )
+    )
+  row)
+
+
 (defun org-export-cmidrule-filter-latex (row backend info)
   (while (string-match
           "\\(<\\([0-9]+\\)cid\\([0-9]+\\)?>[[:blank:]]*\\([^&]+\\)\\)" row)
@@ -129,8 +146,16 @@
     )
   row)
 
+(defun org-export-toprule-filter-latex (row backend info)
+  (replace-regexp-in-string "\\(<tid>\\([[:blank:]]+\\&\\)+\\)[[:blank:]]\\\\\\\\" "\\\\toprule" row))
+
 (defun org-export-midrule-filter-latex (row backend info)
-  (replace-regexp-in-string "\\(<mid>\\([[:blank:]]+\\&\\)+\\)[[:blank:]]\\\\\\\\" "\\\\midrule" row))(defun org-export-multicolumn-filter-html (row backend info)
+  (replace-regexp-in-string "\\(<mid>\\([[:blank:]]+\\&\\)+\\)[[:blank:]]\\\\\\\\" "\\\\midrule" row))
+
+(defun org-export-bottomrule-filter-latex (row backend info)
+  (replace-regexp-in-string "\\(<bid>\\([[:blank:]]+\\&\\)+\\)[[:blank:]]\\\\\\\\" "\\\\bottomrule" row))
+
+(defun org-export-multicolumn-filter-html (row backend info)
   (while (string-match "class=\".*\" *>&lt;\\([0-9]+\\)col\\([lrc]\\)?&gt;" row)
     (let ((columns (string-to-number (match-string 1 row)))
           (start (match-end 0))
@@ -206,7 +231,16 @@
              'org-export-cmidrule-filter-latex)
 
 (add-to-list 'org-export-filter-table-row-functions
+             'org-export-tabularray-cmidrule-filter-latex)
+
+(add-to-list 'org-export-filter-table-row-functions
+             'org-export-toprule-filter-latex)
+
+(add-to-list 'org-export-filter-table-row-functions
              'org-export-midrule-filter-latex)
+
+(add-to-list 'org-export-filter-table-row-functions
+             'org-export-bottomrule-filter-latex)
 
 (add-to-list 'org-export-filter-table-row-functions
              'org-export-blanks-filter-latex)
@@ -214,6 +248,57 @@
 (add-to-list 'org-export-filter-table-row-functions
              'org-export-blanks-filter-html)
 
+(defun my/org-latex--org-table (table contents info)
+  "Return appropriate LaTeX code for an Org table.
+
+TABLE is the table type element to transcode.  CONTENTS is its
+contents, as a string.  INFO is a plist used as a communication
+channel.
+
+This function assumes TABLE has `org' as its `:type' property and
+`table' as its `:mode' attribute."
+  (let* ((attr (org-export-read-attribute :attr_latex table))
+         (alignment (org-latex--align-string table info))
+         (opt (org-export-read-attribute :attr_latex table :options))
+         (table-env (or (plist-get attr :environment)
+                        (plist-get info :latex-default-table-environment)))
+         (width
+          (let ((w (plist-get attr :width)))
+            (cond ((not w) "")
+                  ((member table-env '("tabular" "longtable")) "")
+                  ((member table-env '("tabu" "longtabu"))
+                   (format (if (plist-get attr :spread) " spread %s "
+                             " to %s ")
+                           w))
+                  (t (format "{%s}" w)))))
+         (caption (org-latex--caption/label-string table info))
+         (above? (org-latex--caption-above-p table info)))
+    (cond
+     ((member table-env '("longtable" "longtabu"))
+      (let ((fontsize (let ((font (plist-get attr :font)))
+                        (and font (concat font "\n")))))
+        (concat (and fontsize (concat "{" fontsize))
+                (format "\\begin{%s}%s{%s}\n" table-env width alignment)
+                (and above?
+                     (org-string-nw-p caption)
+                     (concat caption "\\\\\n"))
+                contents
+                (and (not above?)
+                     (org-string-nw-p caption)
+                     (concat caption "\\\\\n"))
+                (format "\\end{%s}" table-env)
+                (and fontsize "}"))))
+     (t
+      (let ((output (format "\\begin{%s}%s%s{%s}\n%s\\end{%s}"
+                            table-env
+                            (if opt opt "")
+                            width
+                            alignment
+                            contents
+                            table-env)))
+        (org-latex--decorate-table output attr caption above? info))))))
+
+(advice-add 'org-latex--org-table :override #'my/org-latex--org-table)
 
 (defun org-word-count (beg end
                            &optional count-latex-macro-args?
