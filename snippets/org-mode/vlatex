@@ -22,7 +22,7 @@
 #+MACRO: PARSPC @@latex:\\[0.5\baselineskip]@@ @@html:<br>@@
 #+MACRO: MC @@latex:\mc{\$1}@@
 #+LATEX_HEADER: \setlength\tabcolsep{1pt}
-#+LATEX_HEADER: \usepackage{fontspec,xltxtra,polyglossia}
+#+LATEX_HEADER: \usepackage{fontspec,xltxtra}
 #+LATEX_HEADER: \setmainfont[Ligatures=TeX,Scale=1.0454]{Minion Pro}
 #+LATEX_HEADER: \setsecheadstyle{\raggedright\large\bfseries}
 #+LATEX_HEADER: \setsubsecheadstyle{\raggedright\bfseries}

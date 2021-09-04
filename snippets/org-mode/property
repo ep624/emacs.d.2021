@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: property-for-r
+# key: <propr
+# contributor: Vikas Rawal <vikasrawal@gmail.com>
+# --
+#+PROPERTY: header-args:R :session $1 :eval never-export
+$0

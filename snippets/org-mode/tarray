@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: tabularray
+# key: <tarray
+# contributor: Vikas Rawal <vikasrawal@gmail.com>
+# --
+#+latex_header: \usepackage{tabularray}
+#+latex_header: \UseTblrLibrary{booktabs}
+#+latex_header: \UseTblrLibrary{siunitx}
+#+latex_header: \UseTblrLibrary{diagbox}
+#+MACRO: M @@latex:{{{\$1}}}@@
