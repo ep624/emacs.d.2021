@@ -30,11 +30,17 @@
 ;; expansion. `partial-completion' is important for wildcard support.
 ;; Multiple files can be opened at once with `find-file' if you enter a
 ;; wildcard. You may also give the `initials' completion style a try.
+
 (use-package orderless
   :init
   (setq completion-styles '(orderless)
         completion-category-defaults nil
         completion-category-overrides '((file (styles partial-completion)))))
+
+(advice-add #'vertico--setup :after
+            (lambda (&rest _)
+              (setq-local completion-auto-help nil
+                          completion-show-inline-help nil)))
 
 ;; Persist history over Emacs restarts. Vertico sorts by history position.
 (use-package savehist
@@ -67,19 +73,19 @@
 (use-package marginalia
   :after vertico
   :ensure t
+  :bind ("M-A" . marginalia-cycle)
   :custom
   (marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
   :init
   (marginalia-mode))
 
 
-
 (use-package embark
   :ensure t
 
   :bind
-  (("C-." . embark-act)         ;; pick some comfortable binding
-   ("C-;" . embark-dwim)        ;; good alternative: M-.
+  (("M-." . embark-act)         ;; pick some comfortable binding..old C-.
+   ("M-m" . embark-dwim)        ;; good alternative: M-.
    ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
 
   :init
