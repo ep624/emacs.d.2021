@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: orgmode header
+# key: <head
+# expand-env: ((options (-filter (lambda (x) (not (null x))) (mapcar (lambda (al) (nth 2 al)) org-export-options-alist))))
+# condition: (string= "#+options: " (buffer-substring (line-beginning-position) (+ 11 (line-beginning-position))))
+# --
+#+title: $1
+#+author: ${2:$$(user-full-name)}
+#+date: ${3:`(with-temp-buffer (org-insert-time-stamp nil nil t) (buffer-string))`}
+#+PROPERTY: header-args:R :session $4 :eval never-export
+${5:$$(yas-choose-value options)}:$0
