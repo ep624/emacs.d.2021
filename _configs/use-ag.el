@@ -1,4 +1,3 @@
-
 ;;; use-ag --- initialize ag
 ;;; Commentary:
 ;;; Code:

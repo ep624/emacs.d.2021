@@ -1,7 +1,5 @@
 ;;; use-vertico --- Vertico
-
 ;;; Commentary:
-
 ;;; Code:
 
 (use-package vertico
@@ -68,6 +66,8 @@
 
 ;;   ;; Enable recursive minibuffers
 ;;   (setq enable-recursive-minibuffers t))
+
+(require 'recentf)
 
 
 (use-package marginalia

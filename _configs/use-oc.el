@@ -1,30 +1,31 @@
-
-;;(add-to-list 'load-path "~/scimax/bibtex-actions")
-
-;;(mybibs '("~/ssercloud/bibliobase/bibliobase.bib"))
-
+;;; use-oc --- initialize oc
+;;; Commentary:
+;;; Code:
 
 (use-package ivy-bibtex
+  :ensure t
   :init
-  (setq bibtex-completion-bibliography '("~/ssercloud/bibliobase/bibliobase.bib")
-        bibtex-completion-notes-path "~/ssercloud/bibliobase/notes/"
+  (setq bibtex-completion-bibliography '("~/vikascloud/bibliobase/bibliobase.bib")
+        bibtex-completion-notes-path "~/vikascloud/bibliobase/notes/"
         bibtex-completion-notes-template-multiple-files "#+TITLE: Notes on: ${author-or-editor} (${year}): ${title}\n\nSee [cite/t:@${=key=}]\n"
-        bibtex-completion-library-path '("~/ssercloud/pdfbibliobase/")
+        bibtex-completion-library-path '("~/vikascloud/pdfbibliobase/")
         bibtex-completion-additional-search-fields '(keywords)
         bibtex-completion-display-formats
-        '((article       . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${journal:40}")
-          (inbook        . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} Chapter ${chapter:32}")
-          (incollection  . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${booktitle:40}")
-          (inproceedings . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${booktitle:40}")
-          (t             . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*}"))
-        bibtex-completion-pdf-open-function
+        '((article       . "${=has-pdf=:1}${=has-note=:1} ${author:36} ${year:4} ${title:*} ${journal:40}")
+          (inbook        . "${=has-pdf=:1}${=has-note=:1} ${author:36} ${year:4} ${title:*} Chapter ${chapter:32}")
+          (book          . "${=has-pdf=:1}${=has-note=:1} ${author:36} ${year:4} ${title:*}")
+          (incollection  . "${=has-pdf=:1}${=has-note=:1} ${author:36} ${year:4} ${title:*} ${booktitle:40}")
+          (inproceedings . "${=has-pdf=:1}${=has-note=:1} ${author:36} ${year:4} ${title:*} ${booktitle:40}")
+          (t             . "${=has-pdf=:1}${=has-note=:1} ${author:36} ${year:4} ${title:*}")))
+  (setq bibtex-completion-pdf-open-function
         (lambda (fpath)
-          (call-process "open" nil 0 nil fpath))))
+          (call-process "evince" nil 0 nil fpath)))
+  )
 
 (use-package citeproc
   :ensure t)
 
-(use-package org-cite
+(use-package oc
   :load-path "~/.emacs.d/org-mode/lisp/"
   :config
   (require 'oc-csl)
@@ -57,49 +58,9 @@
        flyspell-mark-duplications-flag nil
        warning-minimum-level :error)
 
-
-(use-package ivy-bibtex
-  :ensure t
-  :init
-  (setq bibtex-completion-bibliography '("~/ssercloud/bibliobase/bibliobase.bib")
-        bibtex-completion-notes-path "~/ssercloud/bibliobase/notes/"
-        bibtex-completion-notes-template-multiple-files "#+TITLE: Notes on: ${author-or-editor} (${year}): ${title}\n\nSee [cite/t:@${=key=}]\n"
-        bibtex-completion-library-path '("~/ssercloud/pdfbibliobase/")
-        bibtex-completion-additional-search-fields '(keywords)
-        bibtex-completion-display-formats
-        '((article       . "${=has-pdf=:1}${=has-note=:1} ${author:36} ${year:4} ${title:*} ${journal:40}")
-          (inbook        . "${=has-pdf=:1}${=has-note=:1} ${author:36} ${year:4} ${title:*} Chapter ${chapter:32}")
-          (book          . "${=has-pdf=:1}${=has-note=:1} ${author:36} ${year:4} ${title:*}")
-          (incollection  . "${=has-pdf=:1}${=has-note=:1} ${author:36} ${year:4} ${title:*} ${booktitle:40}")
-          (inproceedings . "${=has-pdf=:1}${=has-note=:1} ${author:36} ${year:4} ${title:*} ${booktitle:40}")
-          (t             . "${=has-pdf=:1}${=has-note=:1} ${author:36} ${year:4} ${title:*}")))
-  (setq bibtex-completion-pdf-open-function
-        (lambda (fpath)
-          (call-process "evince" nil 0 nil fpath)))
-  )
-
-
 (use-package pretty-hydra :ensure t)
 
 (use-package citeproc :ensure t)
-
-;; (use-package org-cite
-;;   :load-path "~/.emacs.d/org-mode/lisp"
-;;   :config
-;;   (require 'oc-biblatex)
-;;   (require 'oc-csl)
-;;   (require 'doi-utils) ;; this is in org-ref still
-;;   (setq
-;; ;;   org-cite-global-bibliography bibtex-completion-bibliography
-;;    org-cite-csl-styles-dir "~/temp/styles"
-;;    org-cite-insert-processor 'org-ref-cite-insert
-;;    org-cite-follow-processor 'org-ref-cite-follow
-;;    org-cite-activate-processor 'org-ref-cite-activate
-;;    org-cite-export-processors '((html basic)
-;;                                 (latex biblatex)
-;;                                 (t (basic numeric))))
-
-;;   (define-key org-mode-map (kbd "C-c \\") 'org-cite-insert))
 
 
 ;; bibretrieve
@@ -138,6 +99,5 @@
     (setq mm-url-use-external nil)
     )
   )
-
 
 (provide 'use-oc)

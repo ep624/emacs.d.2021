@@ -7,3 +7,6 @@
 [submodule "org-ref-cite"]
 	path = org-ref-cite
 	url = git@github.com:jkitchin/org-ref-cite.git
+[submodule "bibtex-actions"]
+	path = bibtex-actions
+	url = https://github.com/bdarcus/bibtex-actions.git
