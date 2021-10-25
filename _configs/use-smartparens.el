@@ -2,6 +2,16 @@
 ;;; Commentary:
 ;;; Code:
 
+
+(use-package paren
+  :ensure t
+  :config
+  (setq show-paren-style 'expression)
+  (setq show-paren-when-point-in-periphery t)
+  (setq show-paren-when-point-inside-paren nil)
+  :hook (after-init-hook . show-paren-mode))
+
+
 (require 'cua-base)
 (define-key cua-global-keymap [C-return] nil)
 (use-package smartparens :ensure t)
