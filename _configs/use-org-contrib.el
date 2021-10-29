@@ -248,7 +248,15 @@
 (add-to-list 'org-export-filter-table-row-functions
              'org-export-blanks-filter-html)
 
-(defun my/org-latex--org-table (table contents info)
+(defun plist->alist (plist)
+  (if (null plist)
+      '()
+    (cons
+     (list (car plist) (cadr plist))
+     (plist->alist (cddr plist)))))
+
+
+(defun org-latex--org-table (table contents info)
   "Return appropriate LaTeX code for an Org table.
 
 TABLE is the table type element to transcode.  CONTENTS is its
@@ -259,7 +267,16 @@ This function assumes TABLE has `org' as its `:type' property and
 `table' as its `:mode' attribute."
   (let* ((attr (org-export-read-attribute :attr_latex table))
          (alignment (org-latex--align-string table info))
-         (opt (org-export-read-attribute :attr_latex table :options))
+         ;; various `:options' props ;;;; <== modified from here
+         (attr-alist (plist->alist attr))
+         (options-list)
+         (options-str (progn
+                        (mapc (lambda (m)
+                                (when (eq (car m) :options)
+                                  (add-to-list 'options-list (cdr m))))
+                              attr-alist)
+                        (mapconcat (lambda (x) (mapconcat 'identity x "")) options-list " ")))
+         ;;;;;;;; < == to here
          (table-env (or (plist-get attr :environment)
                         (plist-get info :latex-default-table-environment)))
          (width
@@ -291,14 +308,17 @@ This function assumes TABLE has `org' as its `:type' property and
      (t
       (let ((output (format "\\begin{%s}%s%s{%s}\n%s\\end{%s}"
                             table-env
-                            (if opt opt "")
+                            ;; modified here
+                            (if options-list (format "[%s]" options-str) "")
                             width
                             alignment
                             contents
                             table-env)))
         (org-latex--decorate-table output attr caption above? info))))))
 
-(advice-add 'org-latex--org-table :override #'my/org-latex--org-table)
+
+;;(advice-add 'org-latex--org-table :override #'my/org-latex--org-table)
+
 
 (defun org-word-count (beg end
                            &optional count-latex-macro-args?
