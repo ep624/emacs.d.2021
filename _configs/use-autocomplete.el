@@ -3,8 +3,10 @@
 ;;; Code:
 (require 'use-package)
 
-(use-package yasnippet :ensure t)
+(use-package yasnippet
+  :ensure t)
 (use-package auto-complete
+  :ensure t
   :init
   (progn
     (defun ac-auto-complete-mode-start ()
