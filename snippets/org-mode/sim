@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: shireen-image
+# key: <sim
+# --
+#+attr_latex: :width 0.4\textwidth
+[[${1:`(read-file-name "File: ")`}]]
+
+$0
