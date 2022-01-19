@@ -9,8 +9,8 @@
 (global-set-key '[f6] 'org-show-execute-slide)
 (global-set-key '[f7] 'org-show-next-slide)
 
-(use-package ox-word
-  :ensure nil
-  :load-path "~/scimax")
+;; (use-package ox-word
+;;   :ensure nil
+;;   :load-path "~/scimax")
 
 (provide 'use-scimax)
