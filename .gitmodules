@@ -4,6 +4,3 @@
 [submodule "org-contrib"]
 	path = org-contrib
 	url = https://git.sr.ht/~bzg/org-contrib
-[submodule "org-ref-cite"]
-	path = org-ref-cite
-	url = git@github.com:jkitchin/org-ref-cite.git
