@@ -23,3 +23,6 @@ url/
 elfeed.stats
 projectile.cache
 savefile/
+org-roam.db
+eln-cache/
+_activated/use-khalel.el
