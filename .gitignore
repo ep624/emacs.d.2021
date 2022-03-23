@@ -19,3 +19,7 @@ snippets/org-mode/srct~
 tmp/savehist
 tutorial/
 url/
+*~
+elfeed.stats
+projectile.cache
+savefile/
