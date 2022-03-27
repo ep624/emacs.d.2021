@@ -10,7 +10,7 @@
 (require 'ox-extra)
 ;; (use-package ox-extra :after org)
 (require 'org-tempo)
-(require 'doi-utils)
+;; (require 'doi-utils)
 (require 'org-id)
 (require 'org-table)
 (require 'ox-md)

@@ -27,31 +27,25 @@
 
 ;; Explicit Requires ...
 (dolist (lib '(custom-keys
-               ag
                diff-region
-;;               highlight-indentation
                teletype-text
                kill-buffer-without-confirm
-;;               mac-frame-adjust
-;;               multiple-cursors
                resize-window
                scroll-bell-fix
                squeeze-view
                switch-window
                xterm-256-to-hex
-               text-transformers
-               make-yasnippet-from-region
+;;               text-transformers
+;;               make-yasnippet-from-region
                markdown-extras-ocodo
                memory-values
-;;               super-hydras
                zappers
                html-entity-helper
-               emoji-cheatsheet
-               tr
-               kbd-gfm
+;;               emoji-cheatsheet
+;;               tr
+;;               kbd-gfm
                packages-outdated-packages
-               date-thing
-  ;;             ibm-box-drawing-hydra
+;;               date-thing
                ))
   (require lib))
 

@@ -11,7 +11,7 @@
   :ensure t
   :init
   (progn
-    (add-to-list 'ag-arguments "--hidden")
+;;    (add-to-list 'ag-arguments "--hidden")
     (setq ag-group-matches nil)
     (bind-key
 ;;     "C-x g" (defhydra ag-hydra (:hint nil) "
