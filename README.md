@@ -6,11 +6,11 @@ This is a use-package based emacs configuration adapted from https://github.com/
 
 Make sure that emacs is installed on your system.
 
-+ On Manjaro with paru installed, you can use `paru -S emacs-git` to install the latest version of emacs.
-+ On Debian/Ubuntu/Linux Mint, use 'apt install emacs' to install the
+- On Manjaro with paru installed, you can use `paru -S emacs-git` to install the latest version of emacs.
+- On Debian/Ubuntu/Linux Mint, use 'apt install emacs' to install the
   version in your distribution repositories, or use instructions
   [here](https://www.emacswiki.org/emacs/EmacsSnapshotAndDebian) to install the latest version.
-+ (Untested) On OS X with homebrew, use the following
+- (Untested) On OS X with homebrew, use the following
 
   ```
   brew tap d12frosted/emacs-plus
@@ -24,17 +24,19 @@ Clone this repository:
 
   ```
   mv ~/.emacs.d ~/.emacs.d.old  ## Move your existing emacs configuration, if any
-  git clone https://github.com/ep624/emacs.d.2021.git ~/.emacs.d
+  git clone -recurse-submodules https://github.com/ep624/emacs.d.2021.git ~/.emacs.d
   ```
 
+You might need to start emacs a couple of times before all the necessary emacs libraries are downloaded and added. If some libraries are not automatically installed and you get errors, you can install them using `M-x package-install libraryname`
 
 ## Package/Feature configuration
+
+All emacs packages configurations are in `~/.emacs.d/_configs` and enabled by
+symlinking to `~/.emacs.d/_activated`.
 
 You can add packages from Elpa, and customisations to `local/init.el`,
 these will run after `init.el` has finished.
 
-Feature/Package configuration is set in `/_configs` and enabled by
-symlinking to `_activated`.
 
 ## Local Config
 
