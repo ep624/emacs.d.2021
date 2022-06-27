@@ -2,8 +2,13 @@
 ;; use-misc-settings
 (show-paren-mode 1)
 (xterm-mouse-mode 1)
+(recentf-mode 1)
+(setq recentf-max-menu-items 25)
+(setq recentf-max-saved-items 25)
+(setq tramp-default-method "ssh")
 (setq show-paren-delay 0.25)
 (setq kill-whole-line 1)
+(pdf-tools-install)
 (fset 'yes-or-no-p 'y-or-n-p)
 
 (put 'set-goal-column           'disabled nil)

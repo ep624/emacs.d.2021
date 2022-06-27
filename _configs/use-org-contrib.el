@@ -23,14 +23,14 @@
 (setq org-latex-caption-above '(image table special-block))
 (setq org-latex-create-formula-image-program 'imagemagick)
 
-(setenv "PATH" (concat (getenv "PATH") ":/usr/local/texlive/2021/bin/x86_64-linux/"))
-(setq exec-path (append exec-path '("/usr/local/texlive/2021/bin/x86_64-linux/")))
+(setenv "PATH" (concat (getenv "PATH") ":/usr/local/texlive/2022/bin/x86_64-linux/"))
+(setq exec-path (append exec-path '("/usr/local/texlive/2022/bin/x86_64-linux/")))
 
 (setq org-latex-pdf-process
-      '("xelatex -interaction nonstopmode -output-directory %o %f"
-        "biber %b"
-        "xelatex -interaction nonstopmode -output-directory %o %f"
-        "xelatex -interaction nonstopmode -output-directory %o %f"))
+      '("/usr/local/texlive/2022/bin/x86_64-linux/xelatex -interaction nonstopmode -output-directory %o %f"
+        "/usr/local/texlive/2022/bin/x86_64-linux/biber %b"
+        "/usr/local/texlive/2022/bin/x86_64-linux/xelatex -interaction nonstopmode -output-directory %o %f"
+        "/usr/local/texlive/2022/bin/x86_64-linux/xelatex -interaction nonstopmode -output-directory %o %f"))
 
 ;; Org latex classes
 
