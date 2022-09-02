@@ -7,3 +7,6 @@
 [submodule "citar-capf"]
 	path = citar-capf
 	url = git@github.com:mclear-tools/citar-capf.git
+[submodule "org-passwords.el"]
+	path = org-passwords.el
+	url = git@github.com:alfaromurillo/org-passwords.el.git

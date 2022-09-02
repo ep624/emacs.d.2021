@@ -34,7 +34,7 @@
       (message "Optional use-file: %s, not found" name))))
 
 
-(set-face-font 'default "-ADBE-Source Code Pro-normal-normal-normal-*-22-*-*-*-m-0-iso10646-1")
+;; (set-face-font 'default "-ADBE-Source Code Pro-normal-normal-normal-*-22-*-*-*-m-0-iso10646-1")
 
 ;; (defun set-window-system-font ()
 ;;   "Set the window system font."
