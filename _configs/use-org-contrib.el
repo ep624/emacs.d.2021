@@ -8,7 +8,6 @@
 (require 'ox-html)
 (require 'ox-publish)
 (require 'org-tempo)
-;; (require 'doi-utils)
 (require 'org-id)
 (require 'org-table)
 (require 'ox-md)
