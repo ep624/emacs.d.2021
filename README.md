@@ -24,7 +24,7 @@ Clone this repository:
 
   ```
   mv ~/.emacs.d ~/.emacs.d.old  ## Move your existing emacs configuration, if any
-  git clone -recurse-submodules https://github.com/ep624/emacs.d.2021.git ~/.emacs.d
+  git clone --recurse-submodules https://github.com/ep624/emacs.d.2021.git ~/.emacs.d
   ```
 
 You might need to start emacs a couple of times before all the necessary emacs libraries are downloaded and added. If some libraries are not automatically installed and you get errors, you can install them using `M-x package-install libraryname`
