@@ -57,7 +57,7 @@
    '(("Hacker News" "https://news.ycombinator.com/rss" nil nil nil)
      ("Emacs Reddit" "http://www.reddit.com/r/emacs.rss" nil nil nil)))
  '(package-selected-packages
-   '(elfeed-score elfeed helm-themes zenburn-theme yasnippet-snippets which-key swiper super-save speed-type smartparens rainbow-mode projectile persistent-scratch bibretrieve cdlatex org-ref pdf-tools key-chord helm-bibtex bibtex-completion biblio biblio-core f parsebib helm helm-core async htmlize org-sticky-header nameless multiple-cursors multi-web-mode move-text magit auctex kurecolor ivy iedit flx-ido ido-completing-read+ ido-vertical-mode highlight-indentation git-gutter eshell-git-prompt edit-server dirtree dired-subtree coffee-mode avy auto-complete anzu tblui epl yasnippet hydra ag quelpa-use-package))
+   '(elfeed-score elfeed helm-themes zenburn-theme yasnippet-snippets which-key swiper super-save smartparens rainbow-mode projectile persistent-scratch bibretrieve cdlatex org-ref pdf-tools key-chord helm-bibtex bibtex-completion biblio biblio-core f parsebib helm helm-core async htmlize org-sticky-header nameless multiple-cursors multi-web-mode move-text magit auctex kurecolor ivy iedit flx-ido ido-completing-read+ ido-vertical-mode highlight-indentation git-gutter eshell-git-prompt edit-server dirtree dired-subtree coffee-mode avy auto-complete anzu tblui epl yasnippet hydra ag quelpa-use-package))
  '(paradox-automatically-star t)
  '(paradox-github-token t)
  '(powerline-color1 "#1E1E1E")

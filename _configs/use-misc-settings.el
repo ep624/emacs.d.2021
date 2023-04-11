@@ -8,7 +8,6 @@
 (setq tramp-default-method "ssh")
 (setq show-paren-delay 0.25)
 (setq kill-whole-line 1)
-(pdf-tools-install)
 (fset 'yes-or-no-p 'y-or-n-p)
 
 (put 'set-goal-column           'disabled nil)
