@@ -1,6 +1,5 @@
-
 (add-to-list 'load-path "~/.emacs.d/org-mode/lisp/")
-(require 'org-cite)
+;; (require 'org-cite)
 (require 'oc-csl)
 (require 'oc-biblatex)
 

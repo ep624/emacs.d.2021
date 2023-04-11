@@ -51,6 +51,4 @@
   ;; Global hook
   (add-hook 'completion-at-point-functions #'citar-capf 'append))
 
-
-
 (provide 'use-citar)

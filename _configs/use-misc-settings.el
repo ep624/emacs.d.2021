@@ -20,12 +20,7 @@
 (put 'dired-find-alternate-file 'disabled nil)
 (put 'scroll-left               'disabled nil)
 
-;; Turn Linum on for a buffer with `super-\' when needed.
-;; note line number is on modeline.
-;;
-;; Linum is deathly slow, so it's always best to avoid unless really
-;; necessary.
-(global-linum-mode -1)
+(global-display-line-numbers-mode)
 
 (defun unfill-paragraph (&optional region)
   "Takes a multi-line paragraph and makes it into a single line of text."

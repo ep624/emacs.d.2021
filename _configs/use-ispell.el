@@ -6,10 +6,10 @@
 (use-package ispell
   :init
   (progn
-    (when (file-exists-p "/usr/local/bin/aspell")
-      (set-variable 'ispell-program-name "/usr/local/bin/aspell")))
+    (when (file-exists-p "/usr/bin/aspell")
+      (set-variable 'ispell-program-name "/usr/bin/aspell")))
   :config
-  (setq ispell-dictionary "english")
+  (setq ispell-dictionary "en_GB")
   (add-hook 'text-mode-hook #'turn-on-flyspell)
   (add-hook 'prog-mode-hook #'flyspell-prog-mode))
 

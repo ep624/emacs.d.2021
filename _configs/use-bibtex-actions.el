@@ -10,7 +10,7 @@
   (require 'oc-biblatex)
   )
 
-(defvar my/bibs '("~/vikascloud/bibliobase/bibliobase.bib"))
+(defvar my/bibs '("~/bibliobase/bibliobase.bib"))
 
 (use-package bibtex-completion
   :ensure t

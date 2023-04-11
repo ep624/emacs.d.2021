@@ -10,3 +10,7 @@
 [submodule "org-passwords.el"]
 	path = org-passwords.el
 	url = git@github.com:alfaromurillo/org-passwords.el.git
+[submodule "emacs-application-framework"]
+	path = emacs-application-framework
+	url = https://github.com/emacs-eaf/emacs-application-framework.git
+	branch = master

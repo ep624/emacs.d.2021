@@ -29,9 +29,9 @@
 (use-package orderless
   :ensure t
   :init
-  (setq completion-styles '(orderless)
+  (setq completion-styles '(orderless basic)
         completion-category-defaults nil
-        completion-category-overrides '((file (styles partial-completion)))))
+        completion-category-overrides '((file (styles basic partial-completion)))))
 
 (advice-add #'vertico--setup :after
             (lambda (&rest _)
@@ -116,5 +116,15 @@
   ;; auto-updating embark collect buffer
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
+
+
+;; for auto suggestions
+;; (define-key company-mode-map [remap completion-at-point] #'consult-company)
+
+(use-package all-the-icons-completion
+  :after (marginalia all-the-icons)
+  :hook (marginalia-mode . all-the-icons-completion-marginalia-setup)
+  :init
+  (all-the-icons-completion-mode))
 
 (provide 'use-vertico)

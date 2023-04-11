@@ -15,6 +15,7 @@
 (require 'org-table)
 (require 'ox-md)
 (require 'ox-org)
+(require 'ob-async)
 
 (use-package org-sticky-header :ensure t :after org)
 
@@ -23,14 +24,14 @@
 (setq org-latex-caption-above '(image table special-block))
 (setq org-latex-create-formula-image-program 'imagemagick)
 
-(setenv "PATH" (concat (getenv "PATH") ":/usr/local/texlive/2022/bin/x86_64-linux/"))
-(setq exec-path (append exec-path '("/usr/local/texlive/2022/bin/x86_64-linux/")))
+(setenv "PATH" (concat (getenv "PATH") ":/usr/local/texlive/2023/bin/x86_64-linux/"))
+(setq exec-path (append exec-path '("/usr/local/texlive/2023/bin/x86_64-linux/")))
 
 (setq org-latex-pdf-process
-      '("/usr/local/texlive/2022/bin/x86_64-linux/xelatex -interaction nonstopmode -output-directory %o %f"
-        "/usr/local/texlive/2022/bin/x86_64-linux/biber %b"
-        "/usr/local/texlive/2022/bin/x86_64-linux/xelatex -interaction nonstopmode -output-directory %o %f"
-        "/usr/local/texlive/2022/bin/x86_64-linux/xelatex -interaction nonstopmode -output-directory %o %f"))
+      '("/usr/local/texlive/2023/bin/x86_64-linux/xelatex -interaction nonstopmode -output-directory %o %f"
+        "/usr/local/texlive/2023/bin/x86_64-linux/biber %b"
+        "/usr/local/texlive/2023/bin/x86_64-linux/xelatex -interaction nonstopmode -output-directory %o %f"
+        "/usr/local/texlive/2023/bin/x86_64-linux/xelatex -interaction nonstopmode -output-directory %o %f"))
 
 ;; Org latex classes
 
@@ -386,6 +387,17 @@ of its arguments."
         (re-search-forward "\\w+\\W*")))
     (message (format "%d words in %s." wc
                      (if mark-active "region" "buffer")))))
+
+
+
+(use-package stripe-buffer
+  :ensure t
+  :after org
+  :config
+  (add-hook 'org-mode-hook 'turn-on-stripe-table-mode)
+  )
+
+
 
 
 (provide 'use-org-contrib)

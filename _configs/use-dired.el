@@ -23,7 +23,7 @@
 
     (add-hook 'dired-mode-hook #'(lambda ()
                                    (visual-line-mode 0)
-                                   (linum-mode 0)
+;;                                   (linum-mode 0)
                                    (auto-revert-mode))))
   :custom
   ;; Always delete and copy recursively

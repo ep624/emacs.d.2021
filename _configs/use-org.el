@@ -50,6 +50,7 @@
 (setq org-hide-leading-stars t)
 (setq org-alphabetical-lists t)
 (setq org-publish-use-timestamps-flag t)
+(setq org-image-actual-width nil)
 (add-hook 'org-mode-hook 'turn-off-auto-fill)
 (add-hook 'org-mode-hook 'turn-on-visual-line-mode)
 
@@ -135,6 +136,17 @@
 ;;   '(define-key org-src-mode-map
 ;;      "\C-x\C-s" #'org-edit-src-exit)))
 
+(defun vikas/toggle-org-macro-markers ()
+  "Toggle visibility of {{{macro}}} markers"
+  (interactive)
+  (setq org-hide-macro-markers (not org-hide-macro-markers))
+  (font-lock-mode)
+  (font-lock-mode))(defun wtd/toggle-org-macro-markers ()
+  "Toggle visibility of {{{macro}}} markers"
+  (interactive)
+  (setq org-hide-macro-markers (not org-hide-macro-markers))
+  (font-lock-mode)
+  (font-lock-mode))
 
 
 (provide 'use-org)
