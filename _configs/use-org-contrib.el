@@ -7,10 +7,7 @@
 (require 'ox-odt)
 (require 'ox-html)
 (require 'ox-publish)
-(require 'ox-extra)
-;; (use-package ox-extra :after org)
 (require 'org-tempo)
-;; (require 'doi-utils)
 (require 'org-id)
 (require 'org-table)
 (require 'ox-md)
@@ -18,8 +15,6 @@
 (require 'ob-async)
 
 (use-package org-sticky-header :ensure t :after org)
-
-(ox-extras-activate '(ignore-headlines))
 
 (setq org-latex-caption-above '(image table special-block))
 (setq org-latex-create-formula-image-program 'imagemagick)

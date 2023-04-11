@@ -4,7 +4,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(Linum-format "%7i ")
  '(auto-install-save-confirm nil)
  '(blink-cursor-mode nil)
  '(column-number-mode t)
@@ -45,8 +44,6 @@
  '(js3-indent-level 2)
  '(jshint-configuration-path "~/.jshintrc")
  '(json-reformat:indent-width 2)
- '(linum-delay t)
- '(linum-eager nil)
  '(lua-indent-level 2)
  '(main-line-color1 "#1E1E1E")
  '(main-line-color2 "#111111")
