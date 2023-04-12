@@ -112,6 +112,11 @@
 
 (setq org-enforce-todo-dependencies t)
 
+(use-package ob-async
+  :after org
+  :ensure t
+  )
+
 ;; execute external programs.
 (org-babel-do-load-languages
  (quote org-babel-load-languages)
@@ -123,7 +128,6 @@
          (dot . t)
          (ditaa . t)
          (python . t)
-         (ledger . t)
          (gnuplot . t)
          ;;           (rec . t)
          (screen . nil)
