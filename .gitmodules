@@ -1,9 +1,6 @@
 [submodule "org-mode"]
 	path = org-mode
 	url = https://code.orgmode.org/bzg/org-mode.git
-[submodule "org-contrib"]
-	path = org-contrib
-	url = https://git.sr.ht/~bzg/org-contrib
 [submodule "citar-capf"]
 	path = citar-capf
 	url = git@github.com:mclear-tools/citar-capf.git
