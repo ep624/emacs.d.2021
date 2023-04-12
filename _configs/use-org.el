@@ -54,6 +54,8 @@
 (add-hook 'org-mode-hook 'turn-off-auto-fill)
 (add-hook 'org-mode-hook 'turn-on-visual-line-mode)
 
+(setq org-export-async-init-file "~/.emacs.d/emacsasync.el")
+
 ;; spell-check in org mode buffers
 
 (add-hook 'org-mode-hook 'flyspell-mode)
