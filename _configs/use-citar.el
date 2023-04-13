@@ -28,27 +28,25 @@
 ;;   (setq citar-symbol-separator "  ")
 ;;   )
 
-(add-to-list 'load-path "~/.emacs.d/citar-capf")
-
-(use-package citar-capf
-  :after citar
-  :demand t
-  :config
-  (setq citar-templates
-      '((prefix . "${:p} ${:n}")
-        (main . "${author editor:20}     ${date year issued:4}     ${title:30}")
-        (suffix . "          ${=key= id:15}    ${=type=:12}")
-        (preview . "${author editor} (${year issued date}) ${title}, ${journal journaltitle publisher container-title collection-title}.\n")
-        (note . "Notes on ${author editor}, ${title}")))
-  ;; Standard Emacs completion-at-point support. NOTE: `citar-capf` takes priority
-  ;; in hook functions but will move to the next function in the hook if no
-  ;; matches are available.
-  (defun citar-capf-hook () (add-hook 'completion-at-point-functions #'citar-capf -100 t))
-  ;; Add hooks
-  (add-hook 'tex-mode-hook #'citar-capf-hook)
-  (add-hook 'markdown-mode-hook #'citar-capf-hook)
-  (add-hook 'org-mode-hook #'citar-capf-hook)
-  ;; Global hook
-  (add-hook 'completion-at-point-functions #'citar-capf 'append))
+;; (use-package citar-capf
+;;   :after citar
+;;   :demand t
+;;   :config
+;;   (setq citar-templates
+;;       '((prefix . "${:p} ${:n}")
+;;         (main . "${author editor:20}     ${date year issued:4}     ${title:30}")
+;;         (suffix . "          ${=key= id:15}    ${=type=:12}")
+;;         (preview . "${author editor} (${year issued date}) ${title}, ${journal journaltitle publisher container-title collection-title}.\n")
+;;         (note . "Notes on ${author editor}, ${title}")))
+;;   ;; Standard Emacs completion-at-point support. NOTE: `citar-capf` takes priority
+;;   ;; in hook functions but will move to the next function in the hook if no
+;;   ;; matches are available.
+;;   (defun citar-capf-hook () (add-hook 'completion-at-point-functions #'citar-capf -100 t))
+;;   ;; Add hooks
+;;   (add-hook 'tex-mode-hook #'citar-capf-hook)
+;;   (add-hook 'markdown-mode-hook #'citar-capf-hook)
+;;   (add-hook 'org-mode-hook #'citar-capf-hook)
+;;   ;; Global hook
+;;   (add-hook 'completion-at-point-functions #'citar-capf 'append))
 
 (provide 'use-citar)
