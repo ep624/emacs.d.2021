@@ -25,7 +25,7 @@ Clone this repository:
   ```
   mv ~/.emacs.d ~/.emacs.d.old  ## Move your existing emacs configuration, if any
   git clone --recurse-submodules https://github.com/ep624/emacs.d.2021.git ~/.emacs.d
-  cd ~/.emacs.d/org-mdoe
+  cd ~/.emacs.d/org-mode
   make
   ```
 
