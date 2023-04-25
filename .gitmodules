@@ -1,9 +1,6 @@
 [submodule "org-mode"]
 	path = org-mode
 	url = https://code.orgmode.org/bzg/org-mode.git
-[submodule "org-contrib"]
-	path = org-contrib
-	url = https://git.sr.ht/~bzg/org-contrib
 [submodule "org-passwords.el"]
 	path = org-passwords.el
 	url = git@github.com:alfaromurillo/org-passwords.el.git
@@ -11,3 +8,6 @@
 	path = emacs-application-framework
 	url = https://github.com/emacs-eaf/emacs-application-framework.git
 	branch = master
+[submodule "org-contrib"]
+	path = org-contrib
+	url = https://git.sr.ht/~bzg/org-contrib

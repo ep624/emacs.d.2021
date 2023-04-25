@@ -4,7 +4,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(Linum-format "%7i ")
  '(auto-install-save-confirm nil)
  '(blink-cursor-mode nil)
  '(column-number-mode t)
@@ -14,7 +13,6 @@
  '(current-language-environment "UTF-8")
  '(custom-safe-themes t)
  '(display-time-mode nil)
- '(display-time-world-time-format "%A %d %B %R %Z (%z)")
  '(ediff-custom-diff-program "diff")
  '(ediff-diff-program "diff")
  '(ediff-diff3-program "diff3")
@@ -45,8 +43,6 @@
  '(js3-indent-level 2)
  '(jshint-configuration-path "~/.jshintrc")
  '(json-reformat:indent-width 2)
- '(linum-delay t)
- '(linum-eager nil)
  '(lua-indent-level 2)
  '(main-line-color1 "#1E1E1E")
  '(main-line-color2 "#111111")
@@ -57,7 +53,7 @@
    '(("Hacker News" "https://news.ycombinator.com/rss" nil nil nil)
      ("Emacs Reddit" "http://www.reddit.com/r/emacs.rss" nil nil nil)))
  '(package-selected-packages
-   '(elfeed-score elfeed helm-themes zenburn-theme yasnippet-snippets which-key swiper super-save smartparens rainbow-mode projectile persistent-scratch bibretrieve cdlatex org-ref pdf-tools key-chord helm-bibtex bibtex-completion biblio biblio-core f parsebib helm helm-core async htmlize org-sticky-header nameless multiple-cursors multi-web-mode move-text magit auctex kurecolor ivy iedit flx-ido ido-completing-read+ ido-vertical-mode highlight-indentation git-gutter eshell-git-prompt edit-server dirtree dired-subtree coffee-mode avy auto-complete anzu tblui epl yasnippet hydra ag quelpa-use-package))
+   '(zenburn-theme yasnippet-snippets which-key swiper super-save smartparens projectile persistent-scratch bibretrieve cdlatex org-ref pdf-tools key-chord helm-bibtex bibtex-completion biblio biblio-core f parsebib helm helm-core async htmlize org-sticky-header nameless multiple-cursors multi-web-mode move-text magit auctex kurecolor ivy iedit flx-ido ido-completing-read+ ido-vertical-mode highlight-indentation git-gutter eshell-git-prompt edit-server dirtree dired-subtree coffee-mode avy auto-complete anzu tblui epl yasnippet hydra ag quelpa-use-package))
  '(paradox-automatically-star t)
  '(paradox-github-token t)
  '(powerline-color1 "#1E1E1E")
@@ -73,12 +69,7 @@
            (global-set-key
             [24 down]
             'duplicate-current-line-or-region)
-           (global-set-key "i" 'iedit-mode))
-     (rainbow-mode . 1)
-     (rainbow-mode . t)
-     (eval when
-           (fboundp 'rainbow-mode)
-           (rainbow-mode 1))
+           (global-set-key "\3i" 'iedit-mode))
      (eval ignore-errors "Write-contents-functions is a buffer-local alternative to before-save-hook"
            (add-hook 'write-contents-functions
                      (lambda nil
@@ -101,6 +92,7 @@
  '(visible-bell t)
  '(whitespace- nil)
  '(window-left-margin 0)
+ '(world-clock-time-format "%A %d %B %R %Z (%z)")
  '(yas-prompt-functions
    '(yas-dropdown-prompt yas/x-prompt yas/completing-prompt yas/ido-prompt yas/no-prompt)))
 (custom-set-faces
