@@ -15,7 +15,11 @@
 (require 'ox-extra)
 (ox-extras-activate '(ignore-headlines))
 
+(use-package org-change :ensure t :after org)
 (use-package org-sticky-header :ensure t :after org)
+
+(setq org-latex-to-mathml-convert-command
+      "latexmlmath \"%i\" --presentationmathml=%o")
 
 (setq org-latex-caption-above '(image table special-block))
 (setq org-latex-create-formula-image-program 'imagemagick)
@@ -60,6 +64,15 @@
                ("\\section{%s}" . "\\section*{%s}")
                ("\\subsection{%s}" . "\\subsection*{%s}")
                ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
+
+(add-to-list 'org-latex-classes
+             '("vmemoirbook"
+               "\\documentclass[11pt]{memoir}"
+               ("\\part{%s}" . "\\part*{%s}")
+               ("\\section{%s}" . "\\section*{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
+
 
 (add-to-list 'org-latex-classes
              '("beamer"
@@ -144,13 +157,19 @@
   row)
 
 (defun org-export-toprule-filter-latex (row backend info)
-  (replace-regexp-in-string "\\(<tid>\\([[:blank:]]+\\&\\)+\\)[[:blank:]]\\\\\\\\" "\\\\toprule" row))
+  (replace-regexp-in-string "\\(<tid>\\([[:blank:]]+\\&\\)+\\)[[:blank:]]\\\\\\\\.*" "\\\\toprule" row))
+
+
+;; earlier version
+;; (defun org-export-midrule-filter-latex (row backend info)
+;;   (replace-regexp-in-string "\\(<mid>\\([[:blank:]]+\\&\\)+\\)[[:blank:]]\\\\\\\\" "\\\\midrule" row))
+
 
 (defun org-export-midrule-filter-latex (row backend info)
-  (replace-regexp-in-string "\\(<mid>\\([[:blank:]]+\\&\\)+\\)[[:blank:]]\\\\\\\\" "\\\\midrule" row))
+  (replace-regexp-in-string "\\(<mid>\\([[:blank:]]+\\&\\)+\\)[[:blank:]]\\\\\\\\.*" "\\\\midrule" row))
 
 (defun org-export-bottomrule-filter-latex (row backend info)
-  (replace-regexp-in-string "\\(<bid>\\([[:blank:]]+\\&\\)+\\)[[:blank:]]\\\\\\\\" "\\\\bottomrule" row))
+  (replace-regexp-in-string "\\(<bid>\\([[:blank:]]+\\&\\)+\\)[[:blank:]]\\\\\\\\.*" "\\\\bottomrule" row))
 
 (defun org-export-multicolumn-filter-html (row backend info)
   (while (string-match "class=\".*\" *>&lt;\\([0-9]+\\)col\\([lrc]\\)?&gt;" row)

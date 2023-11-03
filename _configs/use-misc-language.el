@@ -7,7 +7,7 @@
   :ensure t
   :hook (text-mode . flycheck-languagetool-setup)
   :init
-  (setq flycheck-languagetool-server-jar "/home/vikas/LanguageTool-5.0/languagetool-server.jar"))
+  (setq flycheck-languagetool-server-jar "/usr/share/java/languagetool/languagetool-server.jar"))
 
 (setq langtool-java-classpath
       "/usr/share/languagetool:/usr/share/java/languagetool/*")
