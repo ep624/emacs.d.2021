@@ -55,7 +55,7 @@
       org-cite-activate-processor 'oc-bibtex-actions)
 
 ;; Use consult-completing-read for enhanced interface.
-(advice-add #'completing-read-multiple :override #'consult-completing-read-multiple)
+;; (advice-add #'completing-read-multiple :override #'consult-completing-read-multiple)
 
 ;; ;; If you use which-key, want to move the Embark actions behind a submenu, and sort
 ;; ;; based on the description.

@@ -19,6 +19,7 @@
 (setq org-highest-priority ?A)
 (setq org-lowest-priority ?C)
 (setq org-default-priority ?A)
+(setq epa-pinentry-mode 'loopback)
 
 ;;set colours for priorities
 (setq org-priority-faces '((?A . (:foreground "OliveDrab" :weight bold))

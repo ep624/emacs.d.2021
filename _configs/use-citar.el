@@ -9,12 +9,20 @@
   (citar-bibliography org-cite-global-bibliography)
   ;; optional: org-cite-insert is also bound to C-c C-x C-@
   :bind
-  (:map org-mode-map :package org ("C-c ]" . #'org-cite-insert)))
+  (:map org-mode-map :package org ("C-c ]" . #'org-cite-insert))
+  :hook
+  (LaTeX-mode . citar-capf-setup)
+  (org-mode . citar-capf-setup)
+  )
 
 
-(advice-add #'completing-read-multiple :override #'consult-completing-read-multiple)
-(setq citar-at-point-function 'embark-act)
+; (advice-add #'completing-read-multiple :override #'consult-completing-read-multiple)
+; (setq citar-at-point-function 'embark-act)
 
+(use-package citar-embark
+  :after citar embark
+  :no-require
+  :config (citar-embark-mode))
 
 ;; install all-the-icons and run m-x all-the-icons-install-fonts for the following to work.
 

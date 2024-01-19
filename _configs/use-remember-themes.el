@@ -3,9 +3,8 @@
 ;;           (lambda ()
 ;;             (amitp-mode-line)))
 
-(require 'remember-themes)
-(remember-theme-load)
-(add-hook 'kill-emacs-hook 'remember-theme-save)
+(use-package remember-last-theme
+    :ensure t)
 
 (provide 'use-remember-themes)
 ;;; use-remember-themes.el ends here

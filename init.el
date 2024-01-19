@@ -44,7 +44,7 @@
 ;;               emoji-cheatsheet
 ;;               tr
 ;;               kbd-gfm
-               packages-outdated-packages
+;;               packages-outdated-packages
 ;;               date-thing
                ))
   (require lib))

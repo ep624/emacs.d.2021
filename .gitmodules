@@ -8,3 +8,12 @@
 	path = emacs-application-framework
 	url = https://github.com/emacs-eaf/emacs-application-framework.git
 	branch = master
+[submodule "org-contrib"]
+	path = org-contrib
+	url = https://git.sr.ht/~bzg/org-contrib
+[submodule "ts-fold"]
+	path = ts-fold
+	url = https://github.com/emacs-tree-sitter/ts-fold
+[submodule "org-timeblock"]
+	path = org-timeblock
+	url = https://github.com/ichernyshovvv/org-timeblock

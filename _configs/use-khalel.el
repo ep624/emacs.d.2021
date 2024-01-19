@@ -7,8 +7,8 @@
              khalel-add-capture-template
              ))
 
-(setq khalel-khal-command "/usr/bin/khal")
-(setq khalel-vdirsyncer-command "vdirsyncer")
+(setq khalel-khal-command "/home/vikas/.local/bin/khal")
+;;(setq khalel-vdirsyncer-command "vdirsyncer")
 
 (setq khalel-capture-key "e")
 (setq khalel-import-org-file-confirm-overwrite nil)

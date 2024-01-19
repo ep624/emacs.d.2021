@@ -12,8 +12,14 @@
 (require 'org-table)
 (require 'ox-md)
 (require 'ox-org)
+(require 'ox-extra)
+(ox-extras-activate '(ignore-headlines))
 
+(use-package org-change :ensure t :after org)
 (use-package org-sticky-header :ensure t :after org)
+
+(setq org-latex-to-mathml-convert-command
+      "latexmlmath \"%i\" --presentationmathml=%o")
 
 (setq org-latex-caption-above '(image table special-block))
 (setq org-latex-create-formula-image-program 'imagemagick)
@@ -21,11 +27,41 @@
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/texlive/2023/bin/x86_64-linux/"))
 (setq exec-path (append exec-path '("/usr/local/texlive/2023/bin/x86_64-linux/")))
 
+'(org-preview-latex-default-process 'dvipng)
+'(org-preview-latex-process-alist
+  '((dvipng :programs ("latex" "dvipng") :description "dvi > png"
+            :message
+            "you need to install the programs: latex and dvipng."
+            :image-input-type "dvi" :image-output-type "png"
+            :image-size-adjust (1.0 . 1.0) :latex-compiler
+            ("/usr/local/texlive/2023/bin/x86_64-linux/latex -interaction nonstopmode -output-directory %o %f")
+            :image-converter ("dvipng -D %D -T tight -o %O %f")
+            :transparent-image-converter
+            ("dvipng -D %D -T tight -bg Transparent -o %O %f"))
+    (dvisvgm :programs ("latex" "dvisvgm") :description "dvi > svg"
+             :message
+             "you need to install the programs: latex and dvisvgm."
+             :image-input-type "dvi" :image-output-type "svg"
+             :image-size-adjust (1.7 . 1.5) :latex-compiler
+             ("/usr/local/texlive/2023/bin/x86_64-linux/latex -interaction nonstopmode -output-directory %o %f")
+             :image-converter
+             ("dvisvgm %f --no-fonts --exact-bbox --scale=%S --output=%O"))
+    (imagemagick :programs ("latex" "convert") :description
+                 "pdf > png" :message
+                 "you need to install the programs: latex and imagemagick."
+                 :image-input-type "pdf" :image-output-type "png"
+                 :image-size-adjust (1.0 . 1.0) :latex-compiler
+                 ("/usr/local/texlive/2023/bin/x86_64-linux/pdflatex -interaction nonstopmode -output-directory %o %f")
+                 :image-converter
+                 ("convert -density %D -trim -antialias %f -quality 100 %O"))))
+
 (setq org-latex-pdf-process
       '("/usr/local/texlive/2023/bin/x86_64-linux/xelatex -interaction nonstopmode -output-directory %o %f"
         "/usr/local/texlive/2023/bin/x86_64-linux/biber %b"
         "/usr/local/texlive/2023/bin/x86_64-linux/xelatex -interaction nonstopmode -output-directory %o %f"
         "/usr/local/texlive/2023/bin/x86_64-linux/xelatex -interaction nonstopmode -output-directory %o %f"))
+
+(setq org-format-latex-options (plist-put org-format-latex-options :scale 3.0))
 
 ;; Org latex classes
 
@@ -35,7 +71,8 @@
                ("\\chapter{%s}" . "\\chapter*{%s}")
                ("\\section{%s}" . "\\section*{%s}")
                ("\\subsection{%s}" . "\\subsection*{%s}")
-               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
+               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+               ("\\paragraph{%s}" . "\\paragraph*{%s}")))
 
 (add-to-list 'org-latex-classes
              '("vreport"
@@ -58,6 +95,15 @@
                ("\\section{%s}" . "\\section*{%s}")
                ("\\subsection{%s}" . "\\subsection*{%s}")
                ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
+
+(add-to-list 'org-latex-classes
+             '("vmemoirbook"
+               "\\documentclass[11pt]{memoir}"
+               ("\\part{%s}" . "\\part*{%s}")
+               ("\\section{%s}" . "\\section*{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
+
 
 (add-to-list 'org-latex-classes
              '("beamer"
@@ -142,13 +188,19 @@
   row)
 
 (defun org-export-toprule-filter-latex (row backend info)
-  (replace-regexp-in-string "\\(<tid>\\([[:blank:]]+\\&\\)+\\)[[:blank:]]\\\\\\\\" "\\\\toprule" row))
+  (replace-regexp-in-string "\\(<tid>\\([[:blank:]]+\\&\\)+\\)[[:blank:]]\\\\\\\\.*" "\\\\toprule" row))
+
+
+;; earlier version
+;; (defun org-export-midrule-filter-latex (row backend info)
+;;   (replace-regexp-in-string "\\(<mid>\\([[:blank:]]+\\&\\)+\\)[[:blank:]]\\\\\\\\" "\\\\midrule" row))
+
 
 (defun org-export-midrule-filter-latex (row backend info)
-  (replace-regexp-in-string "\\(<mid>\\([[:blank:]]+\\&\\)+\\)[[:blank:]]\\\\\\\\" "\\\\midrule" row))
+  (replace-regexp-in-string "\\(<mid>\\([[:blank:]]+\\&\\)+\\)[[:blank:]]\\\\\\\\.*" "\\\\midrule" row))
 
 (defun org-export-bottomrule-filter-latex (row backend info)
-  (replace-regexp-in-string "\\(<bid>\\([[:blank:]]+\\&\\)+\\)[[:blank:]]\\\\\\\\" "\\\\bottomrule" row))
+  (replace-regexp-in-string "\\(<bid>\\([[:blank:]]+\\&\\)+\\)[[:blank:]]\\\\\\\\.*" "\\\\bottomrule" row))
 
 (defun org-export-multicolumn-filter-html (row backend info)
   (while (string-match "class=\".*\" *>&lt;\\([0-9]+\\)col\\([lrc]\\)?&gt;" row)
