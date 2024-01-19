@@ -13,6 +13,8 @@
 (require 'ox-beamer)
 (require 'ox-odt)
 (require 'ox-html)
+(require 'ox-extra)
+(ox-extras-activate '(latex-header-blocks ignore-headlines))
 (require 'ox-publish)
 (require 'org-tempo)
 ;; (require 'doi-utils)
@@ -67,7 +69,8 @@
                ("\\chapter{%s}" . "\\chapter*{%s}")
                ("\\section{%s}" . "\\section*{%s}")
                ("\\subsection{%s}" . "\\subsection*{%s}")
-               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
+               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+               ("\\paragraph{%s}" . "\\paragraph*{%s}")))
 
 (add-to-list 'org-latex-classes
              '("vreport"

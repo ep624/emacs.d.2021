@@ -16,7 +16,7 @@
   )
 
 
-(advice-add #'completing-read-multiple :override #'consult-completing-read-multiple)
+; (advice-add #'completing-read-multiple :override #'consult-completing-read-multiple)
 ; (setq citar-at-point-function 'embark-act)
 
 (use-package citar-embark
