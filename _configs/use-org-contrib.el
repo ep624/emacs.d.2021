@@ -12,8 +12,8 @@
 (require 'org-table)
 (require 'ox-md)
 (require 'ox-org)
-(require 'ox-extra)
-(ox-extras-activate '(ignore-headlines))
+;; (require 'ox-extra)
+;; (ox-extras-activate '(ignore-headlines))
 
 (use-package org-change :ensure t :after org)
 (use-package org-sticky-header :ensure t :after org)
