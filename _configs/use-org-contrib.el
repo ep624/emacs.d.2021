@@ -56,10 +56,10 @@
                  ("convert -density %D -trim -antialias %f -quality 100 %O"))))
 
 (setq org-latex-pdf-process
-      '("/usr/local/texlive/2023/bin/x86_64-linux/xelatex -interaction nonstopmode -output-directory %o %f"
-        "/usr/local/texlive/2023/bin/x86_64-linux/biber %b"
-        "/usr/local/texlive/2023/bin/x86_64-linux/xelatex -interaction nonstopmode -output-directory %o %f"
-        "/usr/local/texlive/2023/bin/x86_64-linux/xelatex -interaction nonstopmode -output-directory %o %f"))
+      '("xelatex -interaction nonstopmode -output-directory %o %f"
+        "biber %b"
+        "xelatex -interaction nonstopmode -output-directory %o %f"
+        "xelatex -interaction nonstopmode -output-directory %o %f"))
 
 (setq org-format-latex-options (plist-put org-format-latex-options :scale 3.0))
 
