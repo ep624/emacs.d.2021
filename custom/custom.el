@@ -69,11 +69,7 @@
            (global-set-key
             [24 down]
             'duplicate-current-line-or-region)
-<<<<<<< HEAD
-           (global-set-key "i" 'iedit-mode))
-=======
            (global-set-key "\3i" 'iedit-mode))
->>>>>>> vikas
      (eval ignore-errors "Write-contents-functions is a buffer-local alternative to before-save-hook"
            (add-hook 'write-contents-functions
                      (lambda nil
