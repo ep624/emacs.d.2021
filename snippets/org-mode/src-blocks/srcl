@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: srcl
+# key: <srcl
+# --
+
+#+NAME: $1
+#+BEGIN_SRC R :results ${2:$$(yas-choose-value '("value" "output"))} verbatim latex :exports results
+  $0
+#+end_src
