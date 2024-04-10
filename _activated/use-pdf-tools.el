@@ -1,1 +1,1 @@
-_configs/use-pdf-tools.el
+../_configs/use-pdf-tools.el
