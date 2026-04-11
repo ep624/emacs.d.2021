@@ -1,7 +1,6 @@
-;;; use-eshell --- initialize eshell
+;;; use-eshell --- initialize eshell -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
-(require 'use-package)
 
 (use-package eshell-git-prompt
   :ensure t

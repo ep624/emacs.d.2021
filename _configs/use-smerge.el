@@ -1,7 +1,6 @@
-;;; use-smerge --- initialize smerge
+;;; use-smerge --- initialize smerge -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
-(require 'use-package)
 
 (use-package smerge-mode
   :after hydra

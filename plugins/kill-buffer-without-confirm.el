@@ -1,4 +1,6 @@
-;; kill current buffer without confirmation
+;;; kill-buffer-without-confirm.el --- Kill buffer without confirmation -*- lexical-binding: t; -*-
+;;; Commentary:
+;;; Code:
 
 (defun kill-current-buffer ()
   "Kill the current buffer, without confirmation."
@@ -10,3 +12,5 @@
 (bind-key "C-x k"'kill-current-buffer)
 
 (provide 'kill-buffer-without-confirm)
+
+;;; kill-buffer-without-confirm.el ends here

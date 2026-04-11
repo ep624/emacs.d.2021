@@ -1,9 +1,12 @@
-;; Emacs Mac Port - frame adjust - this is for personal use only,
+;;; mac-frame-adjust.el --- Mac frame size and position helpers -*- lexical-binding: t; -*-
+;;; Commentary:
+;; Adjust Emacs frame size and position to match display geometry on macOS.
+;;; Code:
 ;; because it's not very good ;)
 
 ;; I recommend using Zephyros (or Slate) instead
 
-(require 'cl)
+(require 'cl-lib)
 (require 's)
 (require 'dash)
 
@@ -52,7 +55,7 @@
                 (lambda (d)
                   (--reduce (+ acc it) d))
                 mac-displays-list))
-       (d (reduce 'max d-list))
+       (d (cl-reduce 'max d-list))
        (i (position d d-list )))
     (nth i mac-displays-list)))
 

@@ -1,8 +1,6 @@
-;;; use-ruby --- initialize ruby-mode
+;;; use-ruby --- initialize ruby-mode -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
-(require 'use-package)
-(require 's)
 
 (use-package ruby-mode
 

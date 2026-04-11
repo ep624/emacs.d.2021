@@ -1,4 +1,4 @@
-;;; use-org --- initialize org
+;;; use-org --- initialize org -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -52,6 +52,7 @@
 (setq org-alphabetical-lists t)
 (setq org-publish-use-timestamps-flag t)
 (setq org-image-actual-width nil)
+(setq org-export-allow-bind-keywords t)
 (add-hook 'org-mode-hook 'turn-off-auto-fill)
 (add-hook 'org-mode-hook 'turn-on-visual-line-mode)
 
@@ -157,3 +158,5 @@
 
 
 (provide 'use-org)
+
+;;; use-org.el ends here

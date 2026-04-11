@@ -1,7 +1,6 @@
-;;; use-nameless --- initialize nameless
+;;; use-nameless --- initialize nameless -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
-(require 'use-package)
 
 (use-package nameless
   :ensure t

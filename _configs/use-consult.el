@@ -1,8 +1,9 @@
-;;; use-consult --- consult
+;;; use-consult --- consult -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 
 (use-package consult
+  :ensure t
   ;; Replace bindings. Lazily loaded due by `use-package'.
   :bind (;; C-c bindings (mode-specific-map)
          ("C-c h" . consult-history)
@@ -121,3 +122,5 @@
 )
 
 (provide 'use-consult)
+
+;;; use-consult.el ends here

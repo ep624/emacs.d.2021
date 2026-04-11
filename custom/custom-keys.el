@@ -1,4 +1,4 @@
-;;; custom-keys --- Custom keys for ocodo emacs
+;;; custom-keys --- Custom keys for ocodo emacs -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 

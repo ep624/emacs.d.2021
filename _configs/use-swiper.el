@@ -1,4 +1,4 @@
-;;; use-swiper --- Use swiper
+;;; use-swiper --- Use swiper -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;  use Swiper instead of isearch regexp
 

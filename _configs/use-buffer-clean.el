@@ -1,5 +1,4 @@
-
-;;; use-buffer-clean --- Safe cleanup, probably a package?
+;;; use-buffer-clean --- Safe cleanup, probably a package? -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;  Unless the buffer is a Makefile untabify it.
 ;;

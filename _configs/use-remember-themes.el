@@ -1,4 +1,6 @@
-;; use-remember-themes
+;;; use-remember-themes.el --- Initialize remember-themes -*- lexical-binding: t; -*-
+;;; Commentary:
+;;; Code:
 ;; (add-hook 'remember-theme-after-load-hook
 ;;           (lambda ()
 ;;             (amitp-mode-line)))

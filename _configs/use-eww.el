@@ -1,11 +1,10 @@
-;;; use-eww --- initialize eww
+;;; use-eww.el --- Initialize eww -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
-(require 'use-package)
 
 (use-package eww
   :config
-  (progn (bind-key "L" 'browse-web eww-mode-map)))
+  (bind-key "L" 'browse-web eww-mode-map))
 
 (provide 'use-eww)
-;;; use-eww ends here
+;;; use-eww.el ends here

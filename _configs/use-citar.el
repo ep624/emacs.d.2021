@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t; -*-
 (use-package citar
   :ensure t
   :no-require
@@ -58,3 +59,5 @@
 ;;   (add-hook 'completion-at-point-functions #'citar-capf 'append))
 
 (provide 'use-citar)
+
+;;; use-citar.el ends here

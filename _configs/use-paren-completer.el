@@ -1,10 +1,9 @@
-;;; use-paren-completer --- setup paren-completer
+;;; use-paren-completer.el --- Setup paren-completer -*- lexical-binding: t; -*-
 ;;; Commentary:
-;;  setup paren-completer...
 ;;; Code:
-(require 'use-package)
 
 (use-package paren-completer
+  :ensure t
   :bind (("s-]" . paren-completer-add-single-delimiter)
          ("s-}" . paren-completer-add-all-delimiters)))
 

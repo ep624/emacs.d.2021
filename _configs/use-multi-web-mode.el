@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t; -*-
 ;; Configure multi-web-mode
 (use-package multi-web-mode
   :ensure t
@@ -21,3 +22,5 @@
   (multi-web-global-mode -1)
   )
 (provide 'use-multi-web-mode)
+
+;;; use-multi-web-mode.el ends here

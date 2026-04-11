@@ -1,4 +1,4 @@
-;;; use-colorful-points --- initialize colorful-points
+;;; use-colorful-points --- initialize colorful-points -*- lexical-binding: t; -*-
 ;;; Commentary: https://github.com/jrockway/elisp/blob/master/_local/colorful-points.el
 ;;; Code:
 
@@ -64,3 +64,5 @@ Optional argument IGNORED is ignored."
 
 
 (provide 'use-colorful-points)
+
+;;; use-colorful-points.el ends here

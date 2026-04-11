@@ -1,4 +1,4 @@
-;;; use-exec-path --- initialize exec-path
+;;; use-exec-path --- initialize exec-path -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 

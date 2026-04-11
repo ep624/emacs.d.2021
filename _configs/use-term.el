@@ -1,13 +1,10 @@
-;;; use-term --- initialize ansi-term
+;;; use-term.el --- Initialize term -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
-(require 'use-package)
 
 (use-package term
-  :init
-  (progn
-    (bind-key
-     "C-x y" 'term-paste)))
+  :config
+  (bind-key "C-x y" 'term-paste))
 
 (provide 'use-term)
-;;; use-aani-term ends here
+;;; use-term.el ends here

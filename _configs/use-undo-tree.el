@@ -1,12 +1,11 @@
-;;; use-undo-tree --- initialize undo-tree
+;;; use-undo-tree.el --- Initialize undo-tree -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
-(require 'use-package)
 
 (use-package undo-tree
+  :ensure t
   :config (setq undo-tree-visualizer-timestamps t)
-  :bind
-  (("C-c C-u" . undo-tree-visualize) 'use-undo-tree))
+  :bind ("C-c C-u" . undo-tree-visualize))
 
 (provide 'use-undo-tree)
-;;; use-undo-tree ends here
+;;; use-undo-tree.el ends here

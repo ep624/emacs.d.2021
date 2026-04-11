@@ -1,12 +1,14 @@
-;; init --- emacs config
+;;; init.el --- Emacs config -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
+
+;; Increase GC threshold early to speed up startup
+(setq gc-cons-threshold 800000)
+
 ;; (package-initialize)
 
-;; increase garbage collection limit
 (add-to-list 'load-path "~/.emacs.d/org-mode/lisp")
 (require 'org-loaddefs)
-(setq gc-cons-threshold 800000)
 
 (let ((default-directory user-emacs-directory))
   (add-to-list 'load-path (expand-file-name "init-helpers")))
@@ -25,7 +27,7 @@
   (normal-top-level-add-subdirs-to-load-path))
 (require 'elpa-init)
 
-;; Explicit Requires ...
+;; Explicit Requires
 (dolist (lib '(custom-keys
                diff-region
                teletype-text
@@ -49,6 +51,12 @@
                ))
   (require lib))
 
+(defun my/log-file-loaded (file)
+  "Print a message when a library is loaded."
+  (message "Successfully loaded: %s" file))
+
+(add-hook 'after-load-functions #'my/log-file-loaded)
+
 (dolist (use-file
          (directory-files (ocodo-active-config-directory)))
   (load-use-file use-file))
@@ -56,10 +64,8 @@
 (add-to-list 'load-path "~/.emacs.d/local/")
 (add-to-list 'load-path "~/.emacs.d/personal/")
 
-
-;; This is set by some packages erroneously. (e.g. AsciiDoc)
-;; send fix patches to package authors who do this.
-
+;; Note: some packages (e.g. AsciiDoc) erroneously set this to t.
+;; Send fix patches to package authors who do this.
 (setq debug-on-error nil)
 
 (load-local-init)

@@ -1,5 +1,4 @@
-;;; use-company --- use company mode
-(require 'use-package)
+;;; use-company --- use company mode -*- lexical-binding: t; -*-
 
 (use-package company
 
@@ -23,7 +22,9 @@
         company-selection-wrap-around t
         company-tooltip-align-annotations t))
 
+
 (company-tng-configure-default)
+(add-hook 'after-init-hook 'company-tng-mode)
 
 (provide 'use-company)
 

@@ -1,4 +1,4 @@
-;;; use-latex -- auctex/latex configuration
+;;; use-latex -- auctex/latex configuration -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -33,3 +33,5 @@
   :after org)
 
 (provide 'use-latex)
+
+;;; use-latex.el ends here

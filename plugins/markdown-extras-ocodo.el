@@ -1,4 +1,4 @@
-;;; markdown-extras-ocodo --- markdown extras for my config
+;;; markdown-extras-ocodo.el --- Markdown extras -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 (require 'subr-x)

@@ -1,7 +1,6 @@
-;;; use-coffee --- initialize coffee-mode
+;;; use-coffee --- initialize coffee-mode -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
-(require 'use-package)
 
 (use-package coffee-mode
   :ensure t

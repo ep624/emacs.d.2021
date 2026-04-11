@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t; -*-
 ;; Customisations for Occur
 
 ;; (define-key occur-mode-map (kbd "<up>")
@@ -17,3 +18,5 @@
 ;;     (other-window 1)))
 
 (provide 'use-occur)
+
+;;; use-occur.el ends here

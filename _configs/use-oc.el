@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t; -*-
 (add-to-list 'load-path "~/.emacs.d/org-mode/lisp/")
 ;; (require 'org-cite)
 (require 'oc-csl)
@@ -142,3 +143,5 @@
 
 
 (provide 'use-oc)
+
+;;; use-oc.el ends here

@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t; -*-
 (require 'dash)
 ;; Custom themes from elpa/melpa/marmalade added to load-path
 ;; When they don't do it themeselves...
@@ -12,3 +13,5 @@
     (add-to-list 'custom-theme-load-path item)))
 
 (provide 'use-elpa-themes)
+
+;;; use-elpa-themes.el ends here

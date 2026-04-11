@@ -1,4 +1,6 @@
-;;;###autoload
+;;; diff-region.el --- Compare two regions with ediff -*- lexical-binding: t; -*-
+;;; Commentary:
+;;; Code:
 (defun diff-region ()
   "Select a region to compare."
   (interactive)
@@ -26,3 +28,5 @@
           (ediff-buffers bufa bufb))))
 
 (provide 'diff-region)
+
+;;; diff-region.el ends here

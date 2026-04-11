@@ -1,7 +1,6 @@
-;;; use-move-text --- use move-text
+;;; use-move-text --- use move-text -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
-(require 'use-package)
 
 (use-package move-text
   :ensure t

@@ -1,4 +1,4 @@
-;;; use-text --- initialize text-mode
+;;; use-text --- initialize text-mode -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;;
 ;;; Note text-mode is a bit weird, in that you cannot require it (it's already loaded) so use-package isn't needed.

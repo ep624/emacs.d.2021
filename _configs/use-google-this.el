@@ -1,4 +1,4 @@
-;;; Code:
+;;; Code: -*- lexical-binding: t; -*-
 
 (bind-key "M-s-g g" 'google-this)
 (bind-key "M-s-g n" 'google-this-noconfirm)
