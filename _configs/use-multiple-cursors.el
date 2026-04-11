@@ -1,7 +1,6 @@
-;;; use-multiple-cursors --- initialize multiple cursors
+;;; use-multiple-cursors --- initialize multiple cursors -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
-(require 'use-package)
 (cua-selection-mode 1)
 (use-package multiple-cursors
   :ensure t

@@ -26,3 +26,4 @@ savefile/
 org-roam.db
 eln-cache/
 _activated/use-khalel.el
+.aider*

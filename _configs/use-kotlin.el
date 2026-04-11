@@ -1,11 +1,10 @@
-;;; init-kotlin --- initialize kotlin
+;;; use-kotlin.el --- Initialize kotlin -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
-(require 'use-package)
 
 (use-package kotlin-mode
-  :init ;; before use
-    (add-to-list 'auto-mode-alist '("\\.kt\\'" . kotlin-mode)))
+  :ensure t
+  :mode ("\\.kt\\'" . kotlin-mode))
 
-(provide 'init-kotlin)
-;;; init-kotlin ends here
+(provide 'use-kotlin)
+;;; use-kotlin.el ends here

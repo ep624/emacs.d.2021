@@ -1,4 +1,4 @@
-;;; use-scimax --- initialize scimax libraries
+;;; use-scimax --- initialize scimax libraries -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -14,3 +14,5 @@
 (global-set-key '[f7] 'org-show-next-slide)
 
 (provide 'use-scimax)
+
+;;; use-scimax.el ends here

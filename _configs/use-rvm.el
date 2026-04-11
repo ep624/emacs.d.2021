@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t; -*-
 (use-package rvm :ensure t)
 
 (when (file-exists-p "~/.rvm")
@@ -6,3 +7,5 @@
     (rvm-use-default)))
 
 (provide 'use-rvm)
+
+;;; use-rvm.el ends here

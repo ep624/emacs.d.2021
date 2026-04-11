@@ -1,7 +1,6 @@
-;;; use-avy --- initialize avy
+;;; use-avy --- initialize avy -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
-(require 'use-package)
 
 (use-package avy
   :ensure t

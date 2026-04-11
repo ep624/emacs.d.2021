@@ -1,3 +1,5 @@
+;;; quick-init-helpers.el --- Early init helper functions -*- lexical-binding: t; -*-
+;;; Commentary:
 ;;; Code:
 
 (defun init-set-custom ()
@@ -10,19 +12,17 @@
     (load custom-file)))
 
 (defun manage-toolbar-and-menubar ()
-  "Turn off toolbar, and unless OSX Gui turn off menubar."
+  "Turn off toolbar, and unless OSX GUI turn off menubar."
   (when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-  (unless  (and (window-system) (eq system-type 'darwin))
+  (unless (and (window-system) (eq system-type 'darwin))
     (menu-bar-mode -1)))
 
 (defun manage-history ()
   "Manage history."
   (require 'savehist)
-  (eval-after-load "savehist-mode"
-    (progn
-      (let ((default-directory user-emacs-directory))
-        (setq savehist-additional-variables '(kill-ring search-ring regexp-search-ring))
-        (setq savehist-file (expand-file-name "tmp/savehist")))))
+  (let ((default-directory user-emacs-directory))
+    (setq savehist-additional-variables '(kill-ring search-ring regexp-search-ring))
+    (setq savehist-file (expand-file-name "tmp/savehist")))
   (savehist-mode 1))
 
 (defun simple-mode-line-modification ()
@@ -36,10 +36,9 @@
                       :background "gray20"
                       :height 120
                       :inverse-video nil
-                      :box '(
-                             :line-width 6
-                                         :color "gray20"
-                                         :style nil))
+                      :box '(:line-width 6
+                             :color "gray20"
+                             :style nil))
   (set-face-attribute 'mode-line-inactive nil
                       :inherit 'mode-line-face
                       :font "SauceCodePro Nerd Font"
@@ -48,10 +47,9 @@
                       :background "gray40"
                       :height 120
                       :inverse-video nil
-                      :box '(
-                             :line-width 6
-                                         :color "gray40"
-                                         :style nil)))
+                      :box '(:line-width 6
+                             :color "gray40"
+                             :style nil)))
 
 (provide 'quick-init-helpers)
 ;;; quick-init-helpers.el ends here

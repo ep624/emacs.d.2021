@@ -1,3 +1,6 @@
+;;; use-yasnippet.el --- Initialize yasnippet -*- lexical-binding: t; -*-
+;;; Commentary:
+;;; Code:
 
 ;; use-yasnippet
 
@@ -17,3 +20,5 @@
   :after yasnippet)
 
 (provide 'use-yasnippet)
+
+;;; use-yasnippet.el ends here

@@ -1,5 +1,6 @@
-
-;; use-misc-settings
+;;; use-misc-settings.el --- Miscellaneous settings -*- lexical-binding: t; -*-
+;;; Commentary:
+;;; Code:
 (show-paren-mode 1)
 (xterm-mouse-mode 1)
 (recentf-mode 1)
@@ -43,3 +44,5 @@
   (set-window-buffer nil (current-buffer)))
 
 (provide 'use-misc-settings)
+
+;;; use-misc-settings.el ends here

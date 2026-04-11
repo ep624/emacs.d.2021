@@ -1,4 +1,4 @@
-;; use-rspec -- Initialize rspec
+;;; use-rspec -- Initialize rspec -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;  Initialize rspec mode
 ;;

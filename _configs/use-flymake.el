@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t; -*-
 (require 'flymake-checkers)
 ;; -------------------------------------------------------------------------------------------------
 ;; Flymake settings
@@ -32,3 +33,5 @@
   `(flymake-settings))
 
 (provide 'use-flymake)
+
+;;; use-flymake.el ends here

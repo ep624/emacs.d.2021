@@ -1,4 +1,4 @@
-;;; use-ebib --- initialize ebib
+;;; use-ebib --- initialize ebib -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -13,3 +13,5 @@
               ("e" . ebib-biblio-selection-import)))
 
 (provide 'use-ebib)
+
+;;; use-ebib.el ends here

@@ -1,7 +1,6 @@
-;;; use-edit-server -- browser textarea editing delegated to an emacs buffer
+;;; use-edit-server -- browser textarea editing delegated to an emacs buffer -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
-(require 'use-package)
 
 (use-package edit-server
   :ensure t

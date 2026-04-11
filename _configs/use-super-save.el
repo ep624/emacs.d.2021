@@ -1,7 +1,6 @@
-;;; use-super-save --- initialize super-save
+;;; use-super-save --- initialize super-save -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
-(require 'use-package)
 
 (use-package super-save
   :init

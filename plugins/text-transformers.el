@@ -1,4 +1,4 @@
-;;; text-transformers --- A collection of text-transformers
+;;; text-transformers.el --- A collection of text case transformers -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 

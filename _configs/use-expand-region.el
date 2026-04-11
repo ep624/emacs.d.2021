@@ -1,10 +1,9 @@
-;;; use-expand-region --- initialize expand-region
+;;; use-expand-region.el --- Initialize expand-region -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
-(require 'use-package)
 
 (use-package expand-region
-  :init
+  :ensure t
   :bind ("C-x x" . er/expand-region))
 
 (provide 'use-expand-region)

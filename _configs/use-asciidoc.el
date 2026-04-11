@@ -1,7 +1,6 @@
-;;; use-asciidoc --- use asciidoc
+;;; use-asciidoc --- use asciidoc -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
-(require 'use-package)
 
 (use-package asciidoc
   :ensure t

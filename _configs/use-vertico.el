@@ -1,4 +1,4 @@
-
+;;; -*- lexical-binding: t; -*-
 (use-package vertico
   :ensure t
   :bind (:map vertico-map
@@ -186,3 +186,5 @@
   (all-the-icons-completion-mode))
 
 (provide 'use-vertico)
+
+;;; use-vertico.el ends here

@@ -1,7 +1,6 @@
-;;; use-multiapp --- multple libraries
+;;; use-multiapp --- multple libraries -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
-(require 'use-package)
 
 (use-package kurecolor
   :ensure t)

@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t; -*-
 ;; Additional key bindings for projectile rails
 
 (eval-after-load "projectile-rails"
@@ -12,3 +13,5 @@
      (define-key projectile-rails-mode-map (kbd "M-s-p") 'projectile-rails-goto-file-at-point)))
 
 (provide 'use-projectile-rails)
+
+;;; use-projectile-rails.el ends here

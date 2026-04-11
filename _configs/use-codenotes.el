@@ -1,6 +1,10 @@
-;; use-codenotes
+;;; use-codenotes.el --- Initialize codenotes -*- lexical-binding: t; -*-
+;;; Commentary:
+;;; Code:
 (add-hook 'prog-mode-hook
           (lambda ()
             (font-lock-add-keywords nil
                                     '(("\\<\\(NOTE\\|FIXME\\|TODO\\|BUG\\|HACK\\|REFACTOR\\|THE HORROR\\)" 1 font-lock-warning-face t)))))
 (provide 'use-codenotes)
+
+;;; use-codenotes.el ends here

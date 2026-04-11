@@ -1,7 +1,6 @@
-;;; use-ag --- initialize ag
+;;; use-ag --- initialize ag -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
-(require 'use-package)
 
 (use-package hydra
   :ensure t)

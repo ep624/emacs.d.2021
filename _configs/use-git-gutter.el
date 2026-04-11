@@ -1,4 +1,4 @@
-;;; use-git-gutter --- initialize git-gutter
+;;; use-git-gutter --- initialize git-gutter -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 

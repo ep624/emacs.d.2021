@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t; -*-
 ;; nxml mode use
 (add-hook 'nxml-mode-hook (lambda ()
                             (setq Lorem-ipsum-paragraph-separator "<br><br>\n"
@@ -17,3 +18,5 @@
  nxml-slash-auto-complete-flag t)
 
 (provide 'use-nxml)
+
+;;; use-nxml.el ends here

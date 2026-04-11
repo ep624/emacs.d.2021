@@ -1,10 +1,10 @@
-;;; use-haml --- initialize haml
+;;; use-haml.el --- Initialize haml -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
-(require 'use-package)
 
-(use-package haml
-  :mode (("\\.hamlc" . haml-mode)))
+(use-package haml-mode
+  :ensure t
+  :mode ("\\.hamlc" . haml-mode))
 
 (provide 'use-haml)
-;;; use-haml ends here
+;;; use-haml.el ends here

@@ -1,4 +1,4 @@
-
+;;; -*- lexical-binding: t; -*-
 
 (use-package flycheck
   :ensure t)
@@ -25,3 +25,5 @@
   :modes (text-mode markdown-mode gfm-mode org-mode))
 
 (provide 'use-misc-language)
+
+;;; use-misc-language.el ends here

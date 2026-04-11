@@ -1,4 +1,6 @@
-;; use-js-mode
+;;; use-js.el --- Initialize JavaScript mode -*- lexical-binding: t; -*-
+;;; Commentary:
+;;; Code:
 (dolist (pattern '("\\.jsx?\\'"))
   (add-to-list 'auto-mode-alist (cons pattern 'js2-jsx-mode)))
 ;; js2-jsx mode + eslint
@@ -42,3 +44,5 @@
 (add-hook 'js2-jsx-mode-hook #'(lambda () (use-eslint-js2)))
 
 (provide 'use-js)
+
+;;; use-js.el ends here

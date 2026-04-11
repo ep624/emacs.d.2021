@@ -48,15 +48,15 @@
 (setq org-latex-caption-above '(image table special-block))
 (setq org-latex-create-formula-image-program 'imagemagick)
 
-(setenv "PATH" (concat (getenv "PATH") ":/usr/local/texlive/2023/bin/x86_64-linux/"))
-(setq exec-path (append exec-path '("/usr/local/texlive/2023/bin/x86_64-linux/")))
+(setenv "PATH" (concat (getenv "PATH") ":/usr/local/texlive/2024/bin/x86_64-linux/"))
+(setq exec-path (append exec-path '("/usr/local/texlive/2024/bin/x86_64-linux/")))
 
 ;; (setq org-latex-pdf-process
 ;;       '("/usr/local/texlive/2023/bin/x86_64-linux/latexmk -pvc -interaction=nonstopmode -output-directory=data/ -pdf %f"))
 ;;        "/usr/local/texlive/2023/bin/x86_64-linux/latexmk -pvc -interaction=nonstopmode -output-directory=data/ -c %f"))
 
  (setq org-latex-pdf-process
-       '("/usr/local/texlive/2023/bin/x86_64-linux/xelatex -interaction nonstopmode -output-directory %o %f"))
+       '("/usr/local/texlive/2024/bin/x86_64-linux/xelatex -interaction nonstopmode -output-directory %o %f"))
 ;;         "/usr/local/texlive/2023/bin/x86_64-linux/biber %b"
 ;;         "/usr/local/texlive/2023/bin/x86_64-linux/xelatex -interaction nonstopmode -output-directory %o %f"
 ;;         "/usr/local/texlive/2023/bin/x86_64-linux/xelatex -interaction nonstopmode -output-directory %o %f"))

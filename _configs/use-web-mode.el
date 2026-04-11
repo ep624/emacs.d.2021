@@ -1,9 +1,9 @@
-;;; use-web-mode --- initialize web-mode
+;;; use-web-mode.el --- Initialize web-mode -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
-(require 'use-package)
 
 (use-package web-mode
+  :ensure t
   :mode ("\\.mustache\\'"
          "\\.rxml\\'"
          "\\.rhtml\\'"

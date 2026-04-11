@@ -1,7 +1,6 @@
-;;; use-dired --- initialize dired
+;;; use-dired --- initialize dired -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
-(require 'use-package)
 
 (use-package dired
   :init

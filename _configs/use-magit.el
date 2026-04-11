@@ -1,4 +1,4 @@
-;;; use-magit --- Configuration for Magit
+;;; use-magit --- Configuration for Magit -*- lexical-binding: t; -*-
 ;;
 ;;; Commentary:
 ;;  Settings for Magit

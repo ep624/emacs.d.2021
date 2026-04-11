@@ -1,4 +1,4 @@
-;;; teletype-text --- some functions to simulate a teletype
+;;; teletype-text.el --- Simulate a teletype text insert -*- lexical-binding: t; -*-
 ;;; Author: Jason Milkins
 ;;; Url: https://github.com/ocodo/.emacs.d/tree/master/plugins/teletype-text.el
 ;;

@@ -1,3 +1,4 @@
+;;; use-hideshowvis.el --- Initialize hideshowvis -*- lexical-binding: t; -*-
 (when (window-system)
   (require 'hideshowvis)
 
@@ -21,3 +22,5 @@
     (add-hook hook 'hideshowvis-enable)))
 
 (provide 'use-hideshowvis)
+
+;;; use-hideshowvis.el ends here

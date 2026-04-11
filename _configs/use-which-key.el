@@ -1,4 +1,4 @@
-;;; use-which-key --- use which-key-mode
+;;; use-which-key --- use which-key-mode -*- lexical-binding: t; -*-
 ;;; commentary:
 ;;; code:
 

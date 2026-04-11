@@ -1,4 +1,6 @@
-;; use-sh
+;;; use-sh.el --- Initialize sh-mode -*- lexical-binding: t; -*-
+;;; Commentary:
+;;; Code:
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 
 (eval-after-load "sh-mode"
@@ -9,3 +11,5 @@
 (dolist (pattern '("\\.zsh$"))
   (add-to-list 'auto-mode-alist (cons pattern 'sh-mode)))
 (provide 'use-sh)
+
+;;; use-sh.el ends here

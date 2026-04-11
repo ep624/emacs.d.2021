@@ -1,4 +1,4 @@
-;;; use-bibtex-actions --- initialize bibtex-actions
+;;; use-bibtex-actions --- initialize bibtex-actions -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -80,3 +80,5 @@
 ;;      :group 'all-the-icons-faces)
 
 (provide 'use-bibtex-actions)
+
+;;; use-bibtex-actions.el ends here

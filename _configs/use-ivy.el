@@ -1,4 +1,4 @@
-;;; use-ivy --- Ivy mode awesomesauce
+;;; use-ivy --- Ivy mode awesomesauce -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 
@@ -18,3 +18,6 @@
 ;;(require 'ivy)
 
 ;;; use-ivy ends here
+(provide 'use-ivy)
+
+;;; use-ivy.el ends here

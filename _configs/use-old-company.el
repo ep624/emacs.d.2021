@@ -242,3 +242,5 @@
           try-complete-lisp-symbol)))
 
 (provide 'use-company)
+
+;;; use-old-company.el ends here

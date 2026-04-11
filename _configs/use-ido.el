@@ -1,11 +1,10 @@
-;;; use-ido --- initialize ido mode.
+;;; use-ido --- initialize ido mode. -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 
 ;;; use-ido --- initialize ido
 ;;; Commentary:
 ;;; Code:
-(require 'use-package)
 
 (use-package ido
   :ensure t

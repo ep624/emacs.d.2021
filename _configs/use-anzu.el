@@ -1,14 +1,13 @@
-;;; use-anzu --- Anzu mode, pretty isearch and query replace
+;;; use-anzu.el --- Anzu mode, pretty isearch and query replace -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
-(require 'use-package)
 
 (use-package anzu
   :ensure t
-  :init (global-anzu-mode t)
-  :bind (("M-%" . anzu-query-replace)
-         ("s-%" . anzu-query-replace-at-cursor)
+  :config (global-anzu-mode t)
+  :bind (("M-%"   . anzu-query-replace)
+         ("s-%"   . anzu-query-replace-at-cursor)
          ("M-C-%" . anzu-query-replace-regexp)))
 
 (provide 'use-anzu)
-;;; use-anzu ends here
+;;; use-anzu.el ends here
