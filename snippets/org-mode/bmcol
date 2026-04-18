@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: bmcol
+# key: <bmcol
+# --
+
+*** ${1:Column}                                                            :BMCOL:
+:PROPERTIES:
+:BEAMER_col: ${2:0.5}
+:END:
