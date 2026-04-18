@@ -76,17 +76,25 @@ Covers ess-r-mode and any other mode that doesn't auto-create a parser."
 (setq org-latex-caption-above '(image table special-block))
 (setq org-latex-create-formula-image-program 'dvisvgm)
 
-;; TeX Live 2026 Path Configuration
-(setenv "PATH" (concat (getenv "PATH") ":/usr/local/texlive/2026/bin/x86_64-linux/"))
-(setq exec-path (append exec-path '("/usr/local/texlive/2026/bin/x86_64-linux/")))
+;; TeX Live Path Configuration
+;; Update the year here when you install a new TeX Live release.
+(defvar vikas/texlive-year "2026"
+  "Installed TeX Live release year. Update when upgrading TeX Live.")
+
+(defvar vikas/texlive-bin
+  (format "/usr/local/texlive/%s/bin/x86_64-linux" vikas/texlive-year)
+  "Path to the TeX Live bin directory.")
+
+(setenv "PATH" (concat (getenv "PATH") ":" vikas/texlive-bin "/"))
+(add-to-list 'exec-path vikas/texlive-bin)
 
 (setq org-preview-latex-default-process 'dvisvgm)
 (setq org-preview-latex-process-alist
-  '((dvipng :programs ("latex" "dvipng") :description "dvi > png"
+  `((dvipng :programs ("latex" "dvipng") :description "dvi > png"
             :message "you need to install the programs: latex and dvipng."
             :image-input-type "dvi" :image-output-type "png"
             :image-size-adjust (1.0 . 1.0) :latex-compiler
-            ("/usr/local/texlive/2026/bin/x86_64-linux/latex -interaction nonstopmode -output-directory %o %f")
+            (,(concat vikas/texlive-bin "/latex -interaction nonstopmode -output-directory %o %f"))
             :image-converter ("dvipng -D %D -T tight -o %O %f")
             :transparent-image-converter
             ("dvipng -D %D -T tight -bg Transparent -o %O %f"))
@@ -94,22 +102,34 @@ Covers ess-r-mode and any other mode that doesn't auto-create a parser."
              :message "you need to install the programs: latex and dvisvgm."
              :image-input-type "dvi" :image-output-type "svg"
              :image-size-adjust (1.7 . 1.5) :latex-compiler
-             ("/usr/local/texlive/2026/bin/x86_64-linux/latex -interaction nonstopmode -output-directory %o %f")
+             (,(concat vikas/texlive-bin "/latex -interaction nonstopmode -output-directory %o %f"))
              :image-converter
              ("dvisvgm %f --no-fonts --exact-bbox --scale=%S --output=%O"))
     (imagemagick :programs ("latex" "convert") :description "pdf > png"
                  :message "you need to install the programs: latex and imagemagick."
                  :image-input-type "pdf" :image-output-type "png"
                  :image-size-adjust (1.0 . 1.0) :latex-compiler
-                 ("/usr/local/texlive/2026/bin/x86_64-linux/pdflatex -interaction nonstopmode -output-directory %o %f")
+                 (,(concat vikas/texlive-bin "/pdflatex -interaction nonstopmode -output-directory %o %f"))
                  :image-converter
                  ("convert -density %D -trim -antialias %f -quality 100 %O"))))
 
+;; LaTeX export via latexmk.
+;; latexmk handles all reruns automatically: it detects whether biber/bibtex
+;; is needed, reruns xelatex as many times as necessary, and stops when the
+;; output is stable. No need to manually manage the compile sequence.
+;;
+;; -pdfxe        use xelatex
+;; -bibtex       run biber/bibtex when needed, skip when not
+;; -f            force compilation even when errors occur
+;; -xelatex=...  pass -interaction=nonstopmode to xelatex so it doesn't
+;;               halt at errors — this is what produces a full PDF rather
+;;               than a partial one when there are non-fatal errors
+;; -outdir=%o    output to the directory org expects
 (setq org-latex-pdf-process
-      '("/usr/local/texlive/2026/bin/x86_64-linux/xelatex -interaction nonstopmode -output-directory %o %f"
-        "/usr/local/texlive/2026/bin/x86_64-linux/biber %b"
-        "/usr/local/texlive/2026/bin/x86_64-linux/xelatex -interaction nonstopmode -output-directory %o %f"
-        "/usr/local/texlive/2026/bin/x86_64-linux/xelatex -interaction nonstopmode -output-directory %o %f"))
+      (list (concat vikas/texlive-bin
+                    "/latexmk -pdfxe -bibtex -f"
+                    " -xelatex=\"xelatex -interaction=nonstopmode\""
+                    " -outdir=%o %f")))
 
 (setq org-format-latex-options (plist-put org-format-latex-options :scale 3.0))
 

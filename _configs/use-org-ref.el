@@ -13,21 +13,22 @@
 
 (require 'quelpa-use-package)
 
+(use-package persid
+  :quelpa (persid :fetcher github :repo "rougier/persid"))
+
 ;; (quelpa '(org-capture-ref :repo "yantar92/org-capture-ref" :fetcher github))
 ;; (quelpa '(asoc :repo "troyp/asoc.el" :fetcher github))
 ;; (quelpa 's)
 ;; (quelpa 'doct)
 
-(use-package org-capture-ref)
-
-(defvar jmax-lower-case-words
-  '("a" "an" "on" "and" "for"
-    "the" "of" "in")
-  "List of words to keep lowercase")
+(use-package org-capture-ref
+  :ensure t
+  :after org
+  :quelpa (org-capture-ref :fetcher github :repo "yantar92/org-capture-ref"))
 
 (defun jmax-title-case-article (&optional key start end)
-  "Convert a bibtex entry article title to title-case. The
-arguments are optional, and are only there so you can use this
+  "Convert a bibtex entry article title to title-case.
+The arguments are optional, and are only there so you can use this
 function with `bibtex-map-entries' to change all the title
 entries in articles."
   (interactive)

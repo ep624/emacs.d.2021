@@ -127,7 +127,7 @@
 (define-key vertico-map (kbd "M-RET") #'minibuffer-force-complete-and-exit)
 (define-key vertico-map (kbd "M-TAB") #'minibuffer-complete)
 
-(setq completion-styles '(substring orderless))
+;; completion-styles is set in the orderless use-package block above; not repeated here.
 (setq read-file-name-completion-ignore-case t
       read-buffer-completion-ignore-case t
       completion-ignore-case t)

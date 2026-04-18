@@ -61,7 +61,6 @@
 ;; spell-check in org mode buffers
 
 (add-hook 'org-mode-hook 'flyspell-mode)
-(add-hook 'org-mode-hook 'flyspell-buffer)
 
 (setq flyspell-issue-message-flag nil)
 
@@ -75,23 +74,25 @@
 (set-charset-priority 'unicode)
 (setq default-process-coding-system '(utf-8-unix . utf-8-unix))
 
-(org-add-link-type
- "color" nil
- (lambda (path desc format)p
-  (cond
-   ((eq format 'html)
-    (format "<span style=\"color:%s;\">%s</span>" path desc))
-   ((eq format 'latex)
-    (format "{\\color{%s}%s}" path desc)))))
+;; org-add-link-type was removed in modern Org; use org-link-set-parameters instead.
+(with-eval-after-load 'org
+  (org-link-set-parameters
+   "color"
+   :export (lambda (path desc format)
+             (cond
+              ((eq format 'html)
+               (format "<span style=\"color:%s;\">%s</span>" path desc))
+              ((eq format 'latex)
+               (format "{\\color{%s}%s}" path desc)))))
 
-(org-add-link-type
- "hl" nil
- (lambda (path desc format)
-  (cond
-   ((eq format 'html)
-    (format "<font style=\"background-color:%s;\">%s</font>" path desc))
-   ((eq format 'latex)
-    (format "\\colorbox{%s}{%s}" path desc))))) ;; require \usepackage{color}
+  (org-link-set-parameters
+   "hl"
+   :export (lambda (path desc format)
+             (cond
+              ((eq format 'html)
+               (format "<font style=\"background-color:%s;\">%s</font>" path desc))
+              ((eq format 'latex)
+               (format "\\colorbox{%s}{%s}" path desc)))))) ;; require \usepackage{color}
 
 (setq org-agenda-include-diary t)
 
@@ -130,14 +131,12 @@
          (ditaa . t)
          (latex . t)
          (dot . t)
-         (ditaa . t)
          (python . t)
          (gnuplot . t)
          ;;           (rec . t)
          (screen . nil)
          (shell . t)
          (sql . t)
-         (latex . t)
          (sqlite . t))))
 
 ;; (eval-after-load 'org-src
@@ -145,12 +144,7 @@
 ;;      "\C-x\C-s" #'org-edit-src-exit)))
 
 (defun vikas/toggle-org-macro-markers ()
-  "Toggle visibility of {{{macro}}} markers"
-  (interactive)
-  (setq org-hide-macro-markers (not org-hide-macro-markers))
-  (font-lock-mode)
-  (font-lock-mode))(defun wtd/toggle-org-macro-markers ()
-  "Toggle visibility of {{{macro}}} markers"
+  "Toggle visibility of {{{macro}}} markers."
   (interactive)
   (setq org-hide-macro-markers (not org-hide-macro-markers))
   (font-lock-mode)

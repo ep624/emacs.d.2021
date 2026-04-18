@@ -92,8 +92,8 @@
    consult-theme :preview-key '(:debounce 0.2 any)
    consult-ripgrep consult-git-grep consult-grep
    consult-bookmark consult-recent-file consult-xref
-   consult--source-bookmark consult--source-file-register
-   consult--source-recent-file consult--source-project-recent-file
+   consult-source-bookmark consult-source-file-register
+   consult-source-recent-file consult-source-project-recent-file
    ;; :preview-key "M-."
    :preview-key '(:debounce 0.4 any))
 
@@ -107,11 +107,11 @@
 
   ;; Optionally configure a function which returns the project root directory.
   ;; There are multiple reasonable alternatives to chose from.
-  ;;;; 1. project.el (project-roots)
+  ;;;; 1. project.el (project-root — replaces deprecated project-roots)
   (setq consult-project-root-function
         (lambda ()
-          (when-let (project (project-current))
-            (car (project-roots project)))))
+          (when-let* ((project (project-current)))
+            (project-root project))))
   ;;;; 2. projectile.el (projectile-project-root)
   ;; (autoload 'projectile-project-root "projectile")
   ;; (setq consult-project-root-function #'projectile-project-root)

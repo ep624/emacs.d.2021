@@ -8,8 +8,7 @@
 (use-package yasnippet :ensure t)
 
 (defvar mode-line-cleaner-alist
-  `((auto-complete-mode . " α")
-    (yas-minor-mode . " γ")
+  `((yas-minor-mode . " γ")
     (paredit-mode . " Φ")
     (eldoc-mode . "")
     (abbrev-mode . "")

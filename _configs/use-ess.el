@@ -66,5 +66,22 @@
           (repeat_statement   . treesit-fold-range-seq)
           (function_definition . treesit-fold-range-seq))))
 
+(use-package reformatter
+  :ensure t
+  :config
+  ; This creates a function 'r-styler-format-buffer' and a minor mode
+  (reformatter-define r-styler
+    :program "R"
+    :args '("--slave" "--no-save" "--no-restore" "-e" "styler::style_text(readLines(file('stdin')))")))
+
+
+
+(reformatter-define r-styler
+  :program "Rscript"
+  :args (list "-e" "suppressMessages(suppressWarnings(styler::style_text(readLines(file('stdin')))))")
+  :stdin t
+  :stdout t)
+
+
 (provide 'use-ess)
 ;;; use-ess.el ends here
