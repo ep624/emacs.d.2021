@@ -26,6 +26,13 @@
   :after org
   :quelpa (org-capture-ref :fetcher github :repo "yantar92/org-capture-ref"))
 
+;; * Title case transformations
+(defvar jmax-lower-case-words
+  '("a" "an" "on" "and" "for"
+    "the" "of" "in")
+  "List of words to keep lowercase when changing case in a title.")
+
+
 (defun jmax-title-case-article (&optional key start end)
   "Convert a bibtex entry article title to title-case.
 The arguments are optional, and are only there so you can use this

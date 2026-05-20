@@ -4,6 +4,8 @@
 
 (use-package vertico
   :ensure t
+  :init
+  (vertico-mode)
   :bind (:map vertico-map
               ("C-j"   . vertico-next)
               ("C-k"   . vertico-previous)
@@ -15,8 +17,6 @@
               ("M-h"   . backward-kill-word))
   :custom
   (vertico-cycle t)
-  :init
-  (vertico-mode)
   (vertico-reverse-mode 1)
   (vertico-multiform-mode 1))
 
@@ -102,10 +102,10 @@
 
   (setq completion-styles '(orderless basic)
         completion-category-defaults nil
-        completion-category-overrides '((file     (styles partial-completion))
-                                        (command  (styles +orderless-with-initialism))
+        completion-category-overrides '((file (styles partial-completion))
+                                        (command (styles +orderless-with-initialism))
                                         (variable (styles +orderless-with-initialism))
-                                        (symbol   (styles +orderless-with-initialism)))
+                                        (symbol (styles +orderless-with-initialism)))
         orderless-component-separator #'orderless-escapable-split-on-space
         orderless-style-dispatchers (list #'+orderless-consult-dispatch
                                           #'orderless-affix-dispatch)))
@@ -128,10 +128,10 @@
 (define-key vertico-map (kbd "M-RET") #'minibuffer-force-complete-and-exit)
 (define-key vertico-map (kbd "M-TAB") #'minibuffer-complete)
 
-(setq completion-styles '(substring orderless))
-(setq read-file-name-completion-ignore-case t
-      read-buffer-completion-ignore-case t
-      completion-ignore-case t)
+;;(setq completion-styles '(substring orderless))
+;; (setq read-file-name-completion-ignore-case t
+;;       read-buffer-completion-ignore-case t
+;;       completion-ignore-case t)
 
 ;; --- marginalia: annotations in the minibuffer ---
 (use-package marginalia

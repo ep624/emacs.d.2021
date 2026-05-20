@@ -237,17 +237,38 @@ Covers ess-r-mode and any other mode that doesn't auto-create a parser."
         (cl-decf start))))
   row)
 
+;; (defun org-export-cmidrule-filter-latex (row backend info)
+;;   (while (string-match
+;;           "\\(<\\([0-9]+\\)cid\\([0-9]+\\)?>[[:blank:]]*\\([^&]+\\)\\)" row)
+;;     (let ((start (string-to-number (match-string 2 row)))
+;;           (end (or (match-string 3 row) "l")))
+;;       (setq row (replace-match
+;;                  (format "\\\\cmidrule(lr){%s-%s}" start end)
+;;                  nil nil row 1))
+;;       (while (string-match "& \\| \\\\\\\\" row 0)
+;;         (setq row (replace-match "" nil nil row))
+;;         (cl-decf start))))
+;;   row)
+
 (defun org-export-cmidrule-filter-latex (row backend info)
-  (while (string-match
-          "\\(<\\([0-9]+\\)cid\\([0-9]+\\)?>[[:blank:]]*\\([^&]+\\)\\)" row)
-    (let ((start (string-to-number (match-string 2 row)))
-          (end (or (match-string 3 row) "l")))
-      (setq row (replace-match
-                 (format "\\\\cmidrule(lr){%s-%s}" start end)
-                 nil nil row 1))
-      (while (string-match "& \\| \\\\\\\\" row 0)
-        (setq row (replace-match "" nil nil row))
-        (cl-decf start))))
+  "Replace any number of <NcidM> specs in a row with clean LaTeX cmidrules."
+  (when (org-export-derived-backend-p backend 'latex)
+    (when (string-match "<[0-9]+cid[0-9]+>" row)
+      (let ((cmidrules '())
+            (start-pos 0))
+        ;; Step 1: Find and collect all <NcidM> rules in the row
+        (while (string-match "<\\([0-9]+\\)cid\\([0-9]+\\)>" row start-pos)
+          (let ((start (match-string 1 row))
+                (end (match-string 2 row)))
+            ;; Glue a single literal backslash string directly to the front
+            (push (concat "\\" (format "cmidrule(lr){%s-%s}" start end)) cmidrules))
+          (setq start-pos (match-end 0)))
+
+        ;; Step 2: Reverse them into order and join them with a single space
+        (setq row (mapconcat 'identity (nreverse cmidrules) " "))
+
+        ;; Step 3: Finish the row with a single clean newline
+        (setq row (concat row "\n")))))
   row)
 
 (defun org-export-toprule-filter-latex (row _backend _info)

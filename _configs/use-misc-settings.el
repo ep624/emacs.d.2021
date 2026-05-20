@@ -1,6 +1,9 @@
 ;;; use-misc-settings.el --- Miscellaneous settings -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
+(setq custom-enabled-themes '(doom-iosvkem))
+
+
 (show-paren-mode 1)
 (xterm-mouse-mode 1)
 (recentf-mode 1)
@@ -9,7 +12,6 @@
 (setq tramp-default-method "ssh")
 (setq show-paren-delay 0.25)
 (setq kill-whole-line 1)
-(set-mouse-color "#cccccc")
 
 (fset 'yes-or-no-p 'y-or-n-p)
 

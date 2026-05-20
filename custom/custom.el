@@ -1,4 +1,4 @@
-;; Customize stuff...
+;; Customize stuff...  -*- lexical-binding: t; -*-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -19,8 +19,7 @@
  '(fci-rule-character-color "#202020")
  '(fci-rule-color "#202020")
  '(fiplr-ignored-globs
-   '((directories
-      (".git" ".svn" ".hg" ".bzr" "tmp" "log"))
+   '((directories (".git" ".svn" ".hg" ".bzr" "tmp" "log"))
      (files
       (".#*" "*~" "*.so" "*.jpg" "*.png" "*.gif" "*.pdf" "*.gz" "*.zip" ".DS_Store" ".gitkeep"))))
  '(fringe-mode 4 nil (fringe))
@@ -49,11 +48,20 @@
  '(main-line-separator-style 'chamfer)
  '(make-backup-files nil)
  '(markdown-css-path "http://bootswatch.com/simplex/bootstrap.css")
- '(newsticker-url-list
-   '(("Hacker News" "https://news.ycombinator.com/rss" nil nil nil)
-     ("Emacs Reddit" "http://www.reddit.com/r/emacs.rss" nil nil nil)))
- '(package-selected-packages
-   '(zenburn-theme yasnippet-snippets which-key swiper super-save smartparens projectile persistent-scratch bibretrieve cdlatex org-ref pdf-tools key-chord helm-bibtex bibtex-completion biblio biblio-core f parsebib helm helm-core async htmlize org-sticky-header nameless multiple-cursors multi-web-mode move-text magit auctex kurecolor ivy iedit flx-ido ido-completing-read+ ido-vertical-mode highlight-indentation git-gutter eshell-git-prompt edit-server dirtree dired-subtree coffee-mode avy auto-complete anzu tblui epl yasnippet hydra ag quelpa-use-package))
+ (setq package-selected-packages
+   '(ag anzu asoc auctex auto-complete citar dired-subtree dirtree
+        edit-server elfeed-goodies elfeed-score elfeed-tube-mpv
+        elfeed-web embark-consult eshell-git-prompt flycheck
+        fringe-helper git-gutter+ highlight-indentation html2org
+        htmlize iedit khalel kurecolor magit marginalia mastodon
+        move-text multi-web-mode multiple-cursors nameless ob-async
+        orderless org-capture-ref org-change org-ml org-msg
+        org-outlook org-sticky-header pdf-tools persistent-scratch
+        projectile quelpa-use-package rainbow-delimiters rainbow-mode
+        smartparens stripe-buffer super-save tree-sitter
+        tree-sitter-ess-r tree-sitter-indent tree-sitter-ispell
+        tree-sitter-langs vertico vterm web-server which-key
+        yasnippet-snippets))
  '(paradox-automatically-star t)
  '(paradox-github-token t)
  '(powerline-color1 "#1E1E1E")
@@ -64,23 +72,15 @@
  '(recentf-mode t)
  '(rinari-rails-env "development")
  '(safe-local-variable-values
-   '((eval progn
-           (message "Setting project specific key bindings")
-           (global-set-key
-            [24 down]
-            'duplicate-current-line-or-region)
+   '((eval progn (message "Setting project specific key bindings")
+           (global-set-key [24 down] 'duplicate-current-line-or-region)
            (global-set-key "\3i" 'iedit-mode))
-     (eval ignore-errors "Write-contents-functions is a buffer-local alternative to before-save-hook"
-           (add-hook 'write-contents-functions
-                     (lambda nil
-                       (delete-trailing-whitespace)
-                       nil))
-           (require 'whitespace)
-           "Sometimes the mode needs to be toggled off and on."
-           (whitespace-mode 0)
-           (whitespace-mode 1))
-     (whitespace-line-column . 80)
-     (whitespace-style face trailing lines-tail)
+     (eval ignore-errors
+           "Write-contents-functions is a buffer-local alternative to before-save-hook"
+           (add-hook 'write-contents-functions (lambda nil (delete-trailing-whitespace) nil))
+           (require 'whitespace) "Sometimes the mode needs to be toggled off and on."
+           (whitespace-mode 0) (whitespace-mode 1))
+     (whitespace-line-column . 80) (whitespace-style face trailing lines-tail)
      (require-final-newline . t)))
  '(scroll-bar-mode nil)
  '(scss-compile-at-save nil)

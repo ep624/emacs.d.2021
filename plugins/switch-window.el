@@ -1,4 +1,4 @@
-;;; switch-window.el --- A *visual* way to choose a window to switch to
+;;; switch-window.el --- A *visual* way to choose a window to switch to  -*- lexical-binding: t; -*-
 ;;
 ;; Copyright (C) 2010 Dimitri Fontaine
 ;;
